@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
@@ -14,17 +15,22 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import LightIcon from "../Icons/LightIcon";
+import WhatsAppIcon, { WhatsAppIconSmall } from "../Icons/WhatsAppIcon";
+import Link from "next/link";
 
+import { show } from "@/actions/show";
+import { DialogWhatsapp } from "./dialog-whatsapp";
 export function UtilitiesHero() {
   const [value, setValue] = useState<Array<any>>([]);
 
   useEffect(() => {
     async function HandleValue() {
-      const response = await fetch("/api/sucess", {
+      const response = await fetch("/api/utilities", {
         method: "GET",
         next: { revalidate: 3600 },
       });
       const data = await response.json();
+      show(data);
 
       setValue(await data);
     }
@@ -56,9 +62,19 @@ export function UtilitiesHero() {
                   className="w-full h-full  md:basis-0/0 lg:basis-2/6  "
                 >
                   <ProductCard>
-                    <Badge className="  w-auto bg-green-500 text-white">
-                      {item.tag}
-                    </Badge>
+                    {item.tag[0] == "" ? (
+                      <>
+                        <div></div>
+                      </>
+                    ) : (
+                      <>
+                        <Badge
+                          className={`w-auto bg-green-500 text-white animate-bounce mt-2 ${item.tag[1]}`}
+                        >
+                          {String(item.tag).split(",")[0]}
+                        </Badge>
+                      </>
+                    )}
                     <Card className="group relative block overflow-hidden h-full rounded-xl shadow-lg">
                       <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
                         <span className="sr-only">Wishlist</span>
@@ -102,9 +118,18 @@ export function UtilitiesHero() {
                           {item.description}
                         </p>
 
-                        <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105">
-                          Dar uma olhada
-                        </Button>
+                        <div className="  w-full  flex items-center justify-center content-center">
+                          <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105">
+                            <Link
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Dar uma olhada
+                            </Link>
+                          </Button>
+                          <DialogWhatsapp />
+                        </div>
                       </div>
                     </Card>
                   </ProductCard>

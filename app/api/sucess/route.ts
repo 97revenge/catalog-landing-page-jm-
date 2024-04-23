@@ -1,17 +1,11 @@
 import { z } from "zod";
 
-const productSchema = z.object({
-  tag: z.string().optional(),
-  image: z.string().url(),
-  title: z.string(),
-  description: z.string(),
-  url: z.string().url(),
-});
+import { productSchema } from "@/types/product";
 
 export const GET = async () => {
   const products: Array<z.infer<typeof productSchema>> = [
     {
-      tag: "Super Qualidade",
+      tag: ["Super Qualidade", "bg-yellow-500"],
       image:
         "https://images.tcdn.com.br/img/img_prod/1112215/cabo_pp_cristal_2x0_50_mm_171_3_4d1db6402f9065a86b590f859ecc7384.png",
       description: "Cabo para iluminação",

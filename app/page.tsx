@@ -8,20 +8,24 @@ import { AcessoriesHero as Acessories } from "@/components/component/acessories-
 import { LampsHero as Lamps } from "@/components/component/lamps-hero";
 import { SocketsHero as Socket } from "@/components/component/sockets-hero";
 import { UtilitiesHero as Utilities } from "@/components/component/utilities-hero";
+import { SocialHero as Social } from "@/components/component/social-hero";
+import { InitialFooter } from "@/components/component/initial-footer";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Hero />
+      <Utilities />
       <LampShade />
       <Cables />
       <Acessories />
       <Lamps />
       <Socket />
-      <Utilities />
+      <Social />
       <Acess />
       <Payment />
+      <InitialFooter />
     </>
   );
 }

@@ -64,8 +64,10 @@ export function InitialHero() {
                   className="w-full h-full  md:basis-0/0 lg:basis-2/6  "
                 >
                   <ProductCard>
-                    <Badge className="  w-auto bg-green-500 text-white">
-                      {item.tag}
+                    <Badge
+                      className={`w-auto bg-green-500 text-white ${item.tag[1]}`}
+                    >
+                      {String(item.tag).split(",")[0]}
                     </Badge>
                     <Card className="group relative block overflow-hidden h-full rounded-xl shadow-lg">
                       <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
