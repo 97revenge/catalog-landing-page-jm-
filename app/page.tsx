@@ -14,18 +14,20 @@ import { InitialFooter } from "@/components/component/initial-footer";
 export default function Home() {
   return (
     <>
-      <Header />
-      <Hero />
-      <Utilities />
-      <LampShade />
-      <Cables />
-      <Acessories />
-      <Lamps />
-      <Socket />
-      <Social />
-      <Acess />
-      <Payment />
-      <InitialFooter />
+      <div className="bg-gray-100/20">
+        <Header />
+        <Hero />
+        <Utilities />
+        <LampShade />
+        <Cables />
+        <Acessories />
+        <Lamps />
+        <Socket />
+        <Social />
+        <Acess />
+        <Payment />
+        <InitialFooter />
+      </div>
     </>
   );
 }

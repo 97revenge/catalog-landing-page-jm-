@@ -154,6 +154,15 @@ export const GET = () => {
         "É antibacteriano.Indique se você tem pouca água.Tem um desligamento automático.Com difusor aromático.",
       url: "https://www.jmluzearte.com.br/utilidades/difusor-de-aroma-umidificador-efeito-de-chama-essencias-oleo-branco?variant_id=977",
     },
+    {
+      tag: ["Presente Animal 🐶", "bg-red-700"],
+      image:
+        "https://images.tcdn.com.br/img/img_prod/1112215/coleira_guia_retratil_para_caes_gatos_resistente_343_1_8a843ec709b9071f33a01c3c237fba3f.png",
+      title: "Coleira Guia Retrátil Para Cães, Gatos, Resistente",
+      description:
+        "Com Essa Guia a Segurança é Garantida e o Controle de Seu Animal Também  Ideal Para Apropriar o Produto a Idade, Tamanho e Temperamento do Seu Animal",
+      url: "https://www.jmluzearte.com.br/utilidades/coleira-guia-retratil-para-caes-gatos-resistente",
+    },
   ];
 
   return Response.json(products);
