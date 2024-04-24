@@ -10,6 +10,8 @@ import {
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { CarouselPlugin } from "./insta-caroulsel-auto";
 
+import { CarouselPlugin as TikTok } from "./tiktok-carouse-auto";
+
 export function SocialHero() {
   return (
     <section className="w-full py-6 md:py-12 lg:py-15">
@@ -36,7 +38,7 @@ export function SocialHero() {
               ]}
             </CarouselPlugin>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <TikTokEmbed url="/" width={325} />
+              <TikTok />
             </div>
             <div className="group relative overflow-hidden rounded-lg block sm:hidden lg:block">
               <Link className="absolute inset-0 z-10" href="#">
