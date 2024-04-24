@@ -1,12 +1,17 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+
 import { JSX, SVGProps } from "react";
 import WhatsAppIcon from "../Icons/WhatsAppIcon";
 import { PaymentHero } from "./payment-hero";
+import { useRouter } from "next/navigation";
 
 export function AcessHero() {
+  const route = useRouter();
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      <section className="w-full ">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-2 text-center">
             <div className="flex items-center space-x-2">
@@ -27,6 +32,11 @@ export function AcessHero() {
                   variant={"default"}
                   size="lg"
                   className="w-full  mx-auto shadow-md h-full  text-3xl lg:text-6xl bg-[#50c55a] hover:bg-lime-200"
+                  onClick={() =>
+                    route.push(
+                      "https://chat.whatsapp.com/J60gGno5lSAKw3StIK0ZeH"
+                    )
+                  }
                 >
                   Entrar no grupo VIP{" "}
                   <span className="p-2">

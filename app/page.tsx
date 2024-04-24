@@ -24,7 +24,6 @@ export default function Home() {
           <Cables />
           <Acessories />
           <Lamps />
-          <Socket />
           <Social />
           <Acess />
           <Payment />

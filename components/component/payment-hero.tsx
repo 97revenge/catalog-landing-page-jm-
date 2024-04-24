@@ -28,7 +28,7 @@ import { JSX, SVGProps } from "react";
 
 export function PaymentHero() {
   return (
-    <section className="w-full  mb-12 ">
+    <section className="w-full  my-12 ">
       <div className="container grid items-center justify-center gap-4 px-4 md:px-6">
         <div className="space-y-4 text-center">
           <p className="text-sm font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400">
