@@ -19,27 +19,8 @@ import { whatsAppSchema } from "@/types/whatsApp";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-  FormLabel,
-} from "../ui/form";
 
 export function DialogWhatsapp({ ...props }) {
-  const form = useForm<z.infer<typeof whatsAppSchema>>({
-    resolver: zodResolver(whatsAppSchema),
-    defaultValues: {
-      number: "",
-    },
-  });
-
-  const handler = (value: any) => {
-    alert(JSON.stringify(value));
-  };
-
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -11,23 +11,26 @@ import { UtilitiesHero as Utilities } from "@/components/component/utilities-her
 import { SocialHero as Social } from "@/components/component/social-hero";
 import { InitialFooter } from "@/components/component/initial-footer";
 
+import { FadeUpStagger as Up } from "@/components/Animations/FadeUpStagger";
 export default function Home() {
   return (
     <>
-      <div className="bg-gray-100/20">
-        <Header />
-        <Hero />
-        <Utilities />
-        <LampShade />
-        <Cables />
-        <Acessories />
-        <Lamps />
-        <Socket />
-        <Social />
-        <Acess />
-        <Payment />
-        <InitialFooter />
-      </div>
+      <Up>
+        <div className="bg-gray-100/20">
+          <Header />
+          <Hero />
+          <Utilities />
+          <LampShade />
+          <Cables />
+          <Acessories />
+          <Lamps />
+          <Socket />
+          <Social />
+          <Acess />
+          <Payment />
+          <InitialFooter />
+        </div>
+      </Up>
     </>
   );
 }

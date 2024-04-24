@@ -6,4 +6,5 @@ export const productSchema = z.object({
   title: z.string(),
   description: z.string(),
   url: z.string().url(),
+  offer: z.boolean().optional(),
 });
