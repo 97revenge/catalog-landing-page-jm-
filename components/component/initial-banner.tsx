@@ -32,14 +32,22 @@ export function InitialBanner() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
-            <h1 className=" text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-gradient-to-r from-blue-800  to-blue-400 bg-clip-text text-transparent">
-              Ilumine e dê vida para sua casa com nossos produtos de casa &
-              decoração
-            </h1>
+            <div className="mx-auto max-w-5xl text-center">
+              <h1 className="bg-gradient-to-r from-blue-800  to-blue-400 bg-clip-text text-transparent text-3xl font-extrabold text-transparent sm:text-5xl lg:text-6xl">
+                Ilumine e dê vida para sua casa com nossos produtos de casa &
+                decoração
+              </h1>
 
-            <div className="  w-full h-auto flex items-center justify-center">
-              <ComponentIcon />
+              <blockquote className="mx-auto mt-4 max-w-3xl font-bold sm:text-xl/relaxed">
+                A JM Luz e arte transforma ideias em realidade, personalizando
+                cabos e luminárias em peças decorativas para uma experiência
+                positiva dos clientes.
+              </blockquote>
             </div>
+          </div>
+
+          <div className="  w-full h-auto flex items-center justify-center">
+            <ComponentIcon />
           </div>
         </div>
       </div>
