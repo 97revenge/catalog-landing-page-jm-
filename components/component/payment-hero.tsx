@@ -40,16 +40,25 @@ export function PaymentHero() {
             Formas de pagamento
           </h1>
         </div>
-        <div className="grid w-full flex items-center gap-4 md:gap-6 lg:grid-cols-3 justify-center">
+        <div className="grid w-full flex items-center gap-4 my-4 md:gap-6 lg:grid-cols-3 justify-center">
           <Card className="p-4 flex flex-col items-center gap-2">
             <CardContent className="flex flex-col items-center gap-2">
-              <img
-                alt="PIX"
-                className="aspect-square object-cover rounded-lg"
-                height={100}
-                src="/placeholder.svg"
-                width={100}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="72"
+                height="72"
+                viewBox="0 0 24 24"
+                className="current-fill text-green-400"
+              >
+                <path
+                  fill="currentColor"
+                  d="m15.45 16.52l-3.01-3.01c-.11-.11-.24-.13-.31-.13s-.2.02-.31.13L8.8 16.53c-.34.34-.87.89-2.64.89l3.71 3.7a3 3 0 0 0 4.24 0l3.72-3.71c-.91 0-1.67-.18-2.38-.89M8.8 7.47l3.02 3.02c.08.08.2.13.31.13s.23-.05.31-.13l2.99-2.99c.71-.74 1.52-.91 2.43-.91l-3.72-3.71a3 3 0 0 0-4.24 0l-3.71 3.7c1.76 0 2.3.58 2.61.89"
+                />
+                <path
+                  fill="currentColor"
+                  d="m21.11 9.85l-2.25-2.26H17.6c-.54 0-1.08.22-1.45.61l-3 3c-.28.28-.65.42-1.02.42a1.5 1.5 0 0 1-1.02-.42L8.09 8.17c-.38-.38-.9-.6-1.45-.6H5.17l-2.29 2.3a3 3 0 0 0 0 4.24l2.29 2.3h1.48c.54 0 1.06-.22 1.45-.6l3.02-3.02c.28-.28.65-.42 1.02-.42s.74.14 1.02.42l3.01 3.01c.38.38.9.6 1.45.6h1.26l2.25-2.26a3.042 3.042 0 0 0-.02-4.29"
+                />
+              </svg>
               <h3 className="text-lg font-bold">PIX</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 font-bold">
                 Pagamento Rápido & fácil com PIX
@@ -58,13 +67,18 @@ export function PaymentHero() {
           </Card>
           <Card className="p-4 flex flex-col items-center gap-2">
             <CardContent className="flex flex-col items-center gap-2">
-              <img
-                alt="MONEY"
-                className="aspect-square object-cover rounded-lg"
-                height={100}
-                src="/placeholder.svg"
-                width={100}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="72"
+                height="72"
+                viewBox="0 0 256 256"
+                className="current fill text-green-500"
+              >
+                <path
+                  fill="currentColor"
+                  d="M244.24 60a8 8 0 0 0-7.75-.4c-42.93 21-73.59 11.16-106 .78c-34.09-10.85-69.29-22.1-118 1.68A8 8 0 0 0 8 69.24v119.93a8 8 0 0 0 11.51 7.19c42.93-21 73.59-11.16 106.05-.78c19.24 6.15 38.84 12.42 61 12.42c17.09 0 35.73-3.72 56.91-14.06a8 8 0 0 0 4.49-7.18V66.83a8 8 0 0 0-3.72-6.83M48 152a8 8 0 0 1-16 0V88a8 8 0 0 1 16 0Zm80 8a32 32 0 1 1 32-32a32 32 0 0 1-32 32m96 8a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z"
+                />
+              </svg>
               <h3 className="text-lg font-bold">Dinheiro</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Pagamento em dinheiro
@@ -73,13 +87,21 @@ export function PaymentHero() {
           </Card>
           <Card className="p-4 flex flex-col items-center gap-2">
             <CardContent className="flex flex-col items-center gap-2">
-              <img
-                alt="CARD"
-                className="aspect-square object-cover rounded-lg"
-                height={100}
-                src="/placeholder.svg"
-                width={100}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="72"
+                height="72"
+                viewBox="0 0 256 256"
+                className="current-fill text-blue-500"
+              >
+                <g fill="currentColor">
+                  <path
+                    d="M232 96v96a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8V96Z"
+                    opacity=".2"
+                  />
+                  <path d="M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 16v24H32V64Zm0 128H32v-88h192zm-16-24a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8m-64 0a8 8 0 0 1-8 8h-16a8 8 0 0 1 0-16h16a8 8 0 0 1 8 8" />
+                </g>
+              </svg>
               <h3 className="text-lg font-bold">Cartão</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Pagamento em crédito ou débito
