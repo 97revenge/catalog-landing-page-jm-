@@ -1,11 +1,16 @@
 "use client";
 
+
+
+
+
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
 import { JSX, SVGProps } from "react"
 
-import {useCopyToClipboard} from "usehooks-ts"
+import { useCopyToClipboard } from "usehooks-ts"
 
-export const CounponHero =() =>  {
+export const CounponHero = () => {
 
 
 
@@ -28,27 +33,26 @@ export const CounponHero =() =>  {
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-6xl xl:text-7xl">
-                Cupom Excluivo para Voçe 🎉
+              <div className="w-full flex items-center justify-center"><Image src={"https://d335luupugsy2.cloudfront.net/cms/files/30276/1714055729/$thccn6w6b1k"} quality={100} height={85} width={85} alt="icon " /></div>
+              <h1 className="text-center text-4xl font-bold tracking-tighter text-white sm:text-6xl xl:text-7xl">
+                Cupom Exclusivo para Voçe
               </h1>
-              <p className="max-w-[600px] text-gray-200 md:text-xl font-bold">
-              Não perca esta oferta incrível! pegue seu cupom exclusivo agora mesmo 
-              </p>
+
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden relative">
+          <div className="h-auto bg-white rounded-lg shadow-lg overflow-hidden relative">
             <div className="p-6 space-y-4">
               <div className="bg-gray-100 rounded-md px-4 py-2 text-center">
                 <span className="text-4xl font-bold text-[#ffc728] ">PRIMEIRA100</span>
               </div>
-              <p className="text-gray-500 text-center">Tenha até 40% de desconto dentro de nosso e-commerce</p>
+              <p className="text-gray-500 text-center">Tenha até 40% de desconto em  nosso e-commerce</p>
               <div className="w-full flex items-center justify-center">
-              <Button onClick={handleCopy("PRIMEIRA100")}  size={"lg"} className="w-auto flex items-center justify-center animated-background bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:bg-blue-500" >
-                <GiftIcon className="mr-2 w-5 h-5" />
-                 <span className="text-center text-2xl">
-                 <p> {copiedText == "PRIMEIRA100" ? 'Cupom copiado com sucesso' : "Copiar Cupom"}</p>
-                 </span>
-              </Button>
+                <Button onClick={handleCopy("PRIMEIRA100")} size={"lg"} className="w-auto flex items-center justify-center animated-background bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:bg-blue-500" >
+                  <GiftIcon className="mr-2 w-5 h-5" />
+                  <span className="text-center text-2xl">
+                    <p> {copiedText == "PRIMEIRA100" ? 'Cupom copiado com sucesso' : "Copiar Cupom"}</p>
+                  </span>
+                </Button>
 
               </div>
               <p className="text-center text-sm"> {copiedText == "PRIMEIRA100" ? 'Cole este cupom  no fim do seu pedido' : ""}</p>
