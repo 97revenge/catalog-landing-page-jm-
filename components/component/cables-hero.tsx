@@ -79,7 +79,7 @@ export function CablesHero() {
             </p>
           </Category>
         </summary>
-        <div className=" container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0 bg-gradient-to-r from-green-300/10 via-blue-500/10 to-purple-600/10 ">
+        <div className=" container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0 animated-background bg-gradient-to-r from-green-300/10 via-blue-500/10 to-purple-600/10 ">
           <Up>
             <Carousel className="w-full my-auto ">
               <CarouselContent className="ml-2 md:-ml-4 ">
