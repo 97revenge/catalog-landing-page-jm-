@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { CardContent, Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { JSX, SVGProps } from "react"
 
 export function HighlightsCard() {
@@ -21,9 +22,9 @@ export function HighlightsCard() {
         </div>
         <img
           alt="Featured Product"
-          className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="h-64 w-full object-fit group-hover:scale-105 transition-transform duration-300"
           height={400}
-          src="/placeholder.svg"
+          src="https://images.tcdn.com.br/img/img_prod/1112215/extensao_usb_reforcada_com_tecido_trancado_1_85_metros_361_1_5d6adef66ebe33c1acf1ef14892d0007.png"
           style={{
             aspectRatio: "500/400",
             objectFit: "cover",
@@ -39,16 +40,17 @@ export function HighlightsCard() {
             </div>
           </div>
           <p className="text-gray-500 dark:text-gray-400 mb-6">
-            Experience the ultimate in sound quality and comfort with our Acme Wireless Headphones.
+            Extensão USB com cabo trançado super resistente. <b>Inovação & qualidade no mesmo produto.</b>
           </p>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-gray-900 dark:text-gray-50 font-semibold">
               <CurrencyIcon className="h-5 w-5" />
               <span className="px-2"><span className="text-red-500  ">79,99</span> por <span className="px-1 text-green-500 text-3xl">59,99</span> </span>
             </div>
+            <Link href={"https://www.jmluzearte.com.br/utilidades/extensao-usb-reforcada-com-tecido-trancado-1-85-metros"}  target="_blank">
             <Button className="w-full max-w-[150px] bg-green-500" size="lg">
               Comprar Agora
-            </Button>
+            </Button></Link>
           </div>
         </CardContent>
       </Card>

@@ -5,6 +5,8 @@ import Image from "next/image";
 export function InitialHeader() {
   return (
     <header className="w-full py-4 md:py-6">
+
+
       <div className="container flex items-center gap-4 px-4 md:gap-6 md:px-6">
         <div className="flex items-center space-x-2">
           <div className="h-3 w-3 bg-blue-900 rounded-full animate-bounce" />

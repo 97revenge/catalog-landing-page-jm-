@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 
-export const FadeUpStagger = ({ ...props }) => {
+import { motion } from "framer-motion";
+import React from "react";
+
+export const FadeUpStagger = ({ children }:{children:React.ReactNode}) => {
   const FADE_UP_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
@@ -21,7 +23,7 @@ export const FadeUpStagger = ({ ...props }) => {
         },
       }}
     >
-      <motion.div variants={FADE_UP_ANIMATION_VARIANTS} {...props}></motion.div>
+      <motion.div variants={FADE_UP_ANIMATION_VARIANTS} > {children}</motion.div>
     </motion.div>
   );
 };
