@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 
+import { getCookies as cookies } from "@/actions/getCookies";
+
 import { TextAnimatedGradient } from "./text-gradient";
 import {
   Carousel,
@@ -22,6 +24,8 @@ export function InitialHero() {
   const [value, setValue] = useState<Array<any>>([]);
 
   useEffect(() => {
+
+
     async function HandleValue() {
       const response = await fetch("/api/sucess", {
         method: "GET",
@@ -42,7 +46,7 @@ export function InitialHero() {
         <summary>
           <Category>
             <div>
-            <TextAnimatedGradient>Novidade na área  </TextAnimatedGradient> 
+              <TextAnimatedGradient>Novidade na área  </TextAnimatedGradient>
             </div>
             <p className="text-gray-800 dark:text-gray-400">
               Extensões e Luminárias com  cabo reforçado
@@ -51,11 +55,11 @@ export function InitialHero() {
         </summary>
         <div className="  container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0 animated-background bg-gradient-to-r from-yellow-300/10 via-orange-700/10 to-yellow-400/30 ">
           <div>
-          <Up>
-            
-            <HighlightsCard />
-            
-        </Up>
+            <Up>
+
+              <HighlightsCard />
+
+            </Up>
           </div>
         </div>
       </div>

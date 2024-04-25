@@ -14,10 +14,10 @@ export function HighlightsCard() {
         <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
           <Badge className="bg-yellow-500 text-white px-2 py-1 rounded-full" variant="outline">
             <StarIcon className="h-4 w-4 -translate-x-1 animate-pulse" />
-            Produto em destaque  
+            Produto em destaque
           </Badge>
           <Badge className="bg-red-500 text-white px-2 py-1 rounded-full" variant="outline">
-            45% de desconto
+            25% de desconto
           </Badge>
         </div>
         <img
@@ -47,10 +47,10 @@ export function HighlightsCard() {
               <CurrencyIcon className="h-5 w-5" />
               <span className="px-2"><span className="text-red-500  ">79,99</span> por <span className="px-1 text-green-500 text-3xl">59,99</span> </span>
             </div>
-            <Link href={"https://www.jmluzearte.com.br/utilidades/extensao-usb-reforcada-com-tecido-trancado-1-85-metros"}  target="_blank">
-            <Button className="w-full max-w-[150px] bg-green-500" size="lg">
-              Comprar Agora
-            </Button></Link>
+            <Link href={"https://www.jmluzearte.com.br/utilidades/extensao-usb-reforcada-com-tecido-trancado-1-85-metros"} target="_blank">
+              <Button className="w-full max-w-[150px] bg-green-500" size="lg">
+                Comprar Agora
+              </Button></Link>
           </div>
         </CardContent>
       </Card>

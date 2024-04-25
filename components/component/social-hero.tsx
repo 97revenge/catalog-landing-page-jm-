@@ -2,12 +2,7 @@
 
 import Link from "next/link";
 
-import {
-  InstagramEmbed,
-  TikTokEmbed,
-  PlaceholderEmbed,
-} from "react-social-media-embed";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+
 import { CarouselPlugin } from "./insta-caroulsel-auto";
 
 import { CarouselPlugin as TikTok } from "./tiktok-carouse-auto";
@@ -41,7 +36,7 @@ export function SocialHero() {
               <TikTok />
             </div>
             <div className="group relative overflow-hidden rounded-lg block sm:hidden lg:block">
-              <Link className="absolute inset-0 z-10" href="#">
+              <Link className="absolute inset-0 z-10" href="https://www.jmluzearte.com.br/" target="blank">
                 <span className="sr-only">E-commerce</span>
               </Link>
               <img
