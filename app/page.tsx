@@ -1,5 +1,3 @@
-
-
 import { InitialHero as Hero } from "@/components/component/initial-hero";
 import { InitialHeader as Header } from "@/components/component/initial-header";
 import { AcessHero as Acess } from "@/components/component/acess-hero";
@@ -13,14 +11,10 @@ import { UtilitiesHero as Utilities } from "@/components/component/utilities-her
 import { SocialHero as Social } from "@/components/component/social-hero";
 import { InitialFooter } from "@/components/component/initial-footer";
 
-
-
 import { FadeUpStagger as Up } from "@/components/Animations/FadeUpStagger";
-import { CounponHero  as Counpon} from "@/components/component/counpon-hero";
- 
-
-
-
+import { CounponHero as Counpon } from "@/components/component/counpon-hero";
+import { LocationHero } from "@/components/component/location-hero";
+import { TestimonialsCard } from "@/components/component/testimonials-card";
 
 export default function Home() {
   return (
@@ -35,6 +29,7 @@ export default function Home() {
           <Acessories />
           <Lamps />
           <Counpon />
+          <TestimonialsCard />
           <Social />
           <Acess />
           <Payment />
