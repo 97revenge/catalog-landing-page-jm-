@@ -21,7 +21,7 @@ export function AcessHero() {
               </p>
             </div>
             <h1 className=" w-full h-full pb-6 text-3xl my-12 bg-red-200 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-gradient-to-r from-blue-800  to-blue-400 bg-clip-text text-transparent">
-              Partiçipe do nosso grupo VIP
+              Participe do nosso grupo VIP
             </h1>
             <p className=" relative bottom-2 max-w-[600px] underline text-gray-500 dark:text-gray-400">
               Para ter acesso a promoções & sorteios

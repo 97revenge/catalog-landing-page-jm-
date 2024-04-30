@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 
-
-
 import { Button } from "@/components/ui/button";
 import { HeaderCategory as Category } from "./header-category";
 import { ProductCard } from "./product-card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 
@@ -31,7 +29,6 @@ import {
 } from "@/components/ui/carousel";
 import Link from "next/link";
 
-import { show } from "@/actions/show";
 import { DialogWhatsapp } from "./dialog-whatsapp";
 
 import { whatsAppSchema } from "@/types/whatsApp";
@@ -42,9 +39,15 @@ import { Input } from "../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { TextAnimatedGradient } from "./text-gradient";
-import { getCookies as cookies, removeCookies as remove } from "@/actions/getCookies";
+import {
+  getCookies as cookies,
+  removeCookies as remove,
+} from "@/actions/cookies";
+import { useFormStatus } from "react-dom";
+import { WhatsAppButton } from "./whatsapp-button";
 
 export function UtilitiesHero() {
+  const [isPending, startTransition] = useTransition();
 
   const [clicked, setClicket] = useState<boolean>(false);
 
@@ -60,14 +63,12 @@ export function UtilitiesHero() {
   const [value, setValue] = useState<Array<any>>([]);
 
   useEffect(() => {
-
     async function HandleValue() {
       const response = await fetch("/api/utilities", {
         method: "GET",
         next: { revalidate: 3600 },
       });
       const data = await response.json();
-      show(data);
 
       setValue(await data);
     }
@@ -93,16 +94,18 @@ export function UtilitiesHero() {
               <CarouselContent className="ml-2 md:-ml-4 ">
                 {value.map((item: any, index: any) => {
                   const handler = (value: any) => {
-                    const { number } = value;
+                    startTransition(() => {
+                      const { number } = value;
 
-                    return router.push(
-                      `https://api.whatsapp.com/send?phone=${number}&text=Quero te compartilhar este produto: *${item.title}* na JM Luz e Arte ✨ 
-                    *Link do Produto*: ${item.url}
-  
-                    *Shopee* : https://shopee.com.br/jm_luzearte
- 
-                    `
-                    );
+                      return router.push(
+                        `https://api.whatsapp.com/send?phone=${number}&text=Quero te compartilhar este produto: *${item.title}* na JM Luz e Arte ✨ 
+  *Link do Produto*: ${item.url}
+
+  *Shopee* : https://shopee.com.br/jm_luzearte
+
+  `
+                      );
+                    });
                   };
 
                   return (
@@ -126,29 +129,39 @@ export function UtilitiesHero() {
                             </>
                           )}
                           <Card className="group relative block overflow-hidden h-full rounded-xl shadow-lg">
-                            <Button onClick={() => {
-
-                              setClicket(!clicked)
-                              if (clicked == true) {
-                                return cookies({ title: item.title, url: item.url })
-                              } else {
-                                return remove({ title: item.title, url: item.url })
-                              }
-                            }} className="hover:bg-gray-200 absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
+                            <Button
+                              onClick={() => {
+                                setClicket(!clicked);
+                                if (clicked == true) {
+                                  return cookies({
+                                    title: item.title,
+                                    url: item.url,
+                                  });
+                                } else {
+                                  return remove({
+                                    title: item.title,
+                                    url: item.url,
+                                  });
+                                }
+                              }}
+                              className="hover:bg-gray-100 absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75"
+                            >
                               <span className="sr-only">Wishlist</span>
 
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
+                                width="72"
+                                height="72"
                                 viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className={clicked == false ? "h-4 w-4 current-fill text-gray-900" : "h-4 w-4 current-fill text-red-900"}
+                                className={
+                                  clicked == false
+                                    ? "h-4 w-4 current-fill text-gray-900 text-lg"
+                                    : "h-4 w-4 current-fill text-red-900 text-lg"
+                                }
                               >
                                 <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                                  fill="currentColor"
+                                  d="M9 18h5.5q.425 0 .788-.213t.512-.587l2.1-4.9q.05-.125.075-.25T18 11.8V11q0-.425-.288-.713T17 10h-4.6l.6-3.4q.05-.25-.025-.475t-.25-.4L12 5l-4.6 5q-.2.2-.3.45T7 11v5q0 .825.588 1.413T9 18m3 4q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"
                                 />
                               </svg>
                             </Button>
@@ -158,7 +171,7 @@ export function UtilitiesHero() {
                               height={200}
                               quality={100}
                               src={item.image}
-                              alt=""
+                              alt="an icon image"
                               className=" p-2  object-contain transition duration-500 group-hover:scale-105 sm:h-72"
                             />
 
@@ -188,8 +201,8 @@ export function UtilitiesHero() {
                                 {item.description}
                               </p>
 
-                              <div className="  w-full  flex items-center justify-center content-center">
-                                <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105">
+                              <div className=" p-2 w-full  flex items-center justify-center content-center">
+                                <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
                                   <Link
                                     href={item.url}
                                     target="_blank"
@@ -217,7 +230,7 @@ export function UtilitiesHero() {
                                                 type="text"
                                                 className="col-span-3 "
                                                 id="text"
-                                                placeholder="+55 (555) 555-5555"
+                                                placeholder="+55 (55) 5555-5555"
                                                 {...field}
                                               />
                                             </FormControl>
@@ -226,67 +239,9 @@ export function UtilitiesHero() {
                                         )}
                                       />
                                       <DialogFooter className="p-2 w-full  flex items-center justify-center">
-                                        <Button
-                                          className="bg-green-500 w-full"
-                                          type="submit"
-                                        >
-                                          Enviar{" "}
-                                          <div className="mx-2">
-                                            <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              width="20"
-                                              height="25"
-                                              viewBox="0 0 256 258"
-                                            >
-                                              <defs>
-                                                <linearGradient
-                                                  id="logosWhatsappIcon0"
-                                                  x1="50%"
-                                                  x2="50%"
-                                                  y1="100%"
-                                                  y2="0%"
-                                                >
-                                                  <stop
-                                                    offset="0%"
-                                                    stop-color="#1FAF38"
-                                                  />
-                                                  <stop
-                                                    offset="100%"
-                                                    stop-color="#60D669"
-                                                  />
-                                                </linearGradient>
-                                                <linearGradient
-                                                  id="logosWhatsappIcon1"
-                                                  x1="50%"
-                                                  x2="50%"
-                                                  y1="100%"
-                                                  y2="0%"
-                                                >
-                                                  <stop
-                                                    offset="0%"
-                                                    stop-color="#F9F9F9"
-                                                  />
-                                                  <stop
-                                                    offset="100%"
-                                                    stop-color="#FFF"
-                                                  />
-                                                </linearGradient>
-                                              </defs>
-                                              <path
-                                                fill="url(#logosWhatsappIcon0)"
-                                                d="M5.463 127.456c-.006 21.677 5.658 42.843 16.428 61.499L4.433 252.697l65.232-17.104a122.994 122.994 0 0 0 58.8 14.97h.054c67.815 0 123.018-55.183 123.047-123.01c.013-32.867-12.775-63.773-36.009-87.025c-23.23-23.25-54.125-36.061-87.043-36.076c-67.823 0-123.022 55.18-123.05 123.004"
-                                              />
-                                              <path
-                                                fill="url(#logosWhatsappIcon1)"
-                                                d="M1.07 127.416c-.007 22.457 5.86 44.38 17.014 63.704L0 257.147l67.571-17.717c18.618 10.151 39.58 15.503 60.91 15.511h.055c70.248 0 127.434-57.168 127.464-127.423c.012-34.048-13.236-66.065-37.3-90.15C194.633 13.286 162.633.014 128.536 0C58.276 0 1.099 57.16 1.071 127.416m40.24 60.376l-2.523-4.005c-10.606-16.864-16.204-36.352-16.196-56.363C22.614 69.029 70.138 21.52 128.576 21.52c28.3.012 54.896 11.044 74.9 31.06c20.003 20.018 31.01 46.628 31.003 74.93c-.026 58.395-47.551 105.91-105.943 105.91h-.042c-19.013-.01-37.66-5.116-53.922-14.765l-3.87-2.295l-40.098 10.513z"
-                                              />
-                                              <path
-                                                fill="#FFF"
-                                                d="M96.678 74.148c-2.386-5.303-4.897-5.41-7.166-5.503c-1.858-.08-3.982-.074-6.104-.074c-2.124 0-5.575.799-8.492 3.984c-2.92 3.188-11.148 10.892-11.148 26.561c0 15.67 11.413 30.813 13.004 32.94c1.593 2.123 22.033 35.307 54.405 48.073c26.904 10.609 32.379 8.499 38.218 7.967c5.84-.53 18.844-7.702 21.497-15.139c2.655-7.436 2.655-13.81 1.859-15.142c-.796-1.327-2.92-2.124-6.105-3.716c-3.186-1.593-18.844-9.298-21.763-10.361c-2.92-1.062-5.043-1.592-7.167 1.597c-2.124 3.184-8.223 10.356-10.082 12.48c-1.857 2.129-3.716 2.394-6.9.801c-3.187-1.598-13.444-4.957-25.613-15.806c-9.468-8.442-15.86-18.867-17.718-22.056c-1.858-3.184-.199-4.91 1.398-6.497c1.431-1.427 3.186-3.719 4.78-5.578c1.588-1.86 2.118-3.187 3.18-5.311c1.063-2.126.531-3.986-.264-5.579c-.798-1.593-6.987-17.343-9.819-23.64"
-                                              />
-                                            </svg>
-                                          </div>
-                                        </Button>
+                                        <WhatsAppButton disable={isPending}>
+                                          Enviar
+                                        </WhatsAppButton>
                                       </DialogFooter>
                                     </form>
                                   </Form>

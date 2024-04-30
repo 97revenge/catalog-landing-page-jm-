@@ -29,7 +29,6 @@ import {
 } from "@/components/ui/carousel";
 import Link from "next/link";
 
-import { show } from "@/actions/show";
 import { DialogWhatsapp } from "./dialog-whatsapp";
 
 import { whatsAppSchema } from "@/types/whatsApp";
@@ -60,7 +59,6 @@ export function LampshadeHero() {
         next: { revalidate: 3600 },
       });
       const data = await response.json();
-      show(data);
 
       setValue(await data);
     }
@@ -172,7 +170,7 @@ export function LampshadeHero() {
                               </p>
 
                               <div className="  w-full  flex items-center justify-center content-center">
-                                <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105">
+                                <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
                                   <Link
                                     href={item.url}
                                     target="_blank"
