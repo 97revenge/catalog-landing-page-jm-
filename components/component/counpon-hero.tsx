@@ -5,6 +5,7 @@ import Image from "next/image";
 import { JSX, SVGProps } from "react";
 
 import { useCopyToClipboard } from "usehooks-ts";
+import { FadeUpStagger } from "../Animations/FadeUpStagger";
 
 export const CounponHero = () => {
   const [copiedText, copy] = useCopyToClipboard();
@@ -33,6 +34,7 @@ export const CounponHero = () => {
                   quality={100}
                   height={85}
                   width={85}
+                  unoptimized={true}
                   alt="icon "
                 />
               </div>
@@ -59,12 +61,27 @@ export const CounponHero = () => {
                 >
                   <GiftIcon className="mr-2 w-5 h-5" />
                   <span className="text-center text-2xl">
-                    <p>
-                      {" "}
-                      {copiedText == "PRIMEIRA100"
-                        ? "Cupom copiado com sucesso"
-                        : "Copiar Cupom"}
-                    </p>
+                    {copiedText === "PRIMEIRA100" ? (
+                      <>
+                        <FadeUpStagger>
+                          <p>
+                            {" "}
+                            {copiedText == "PRIMEIRA100"
+                              ? "Cupom copiado com sucesso"
+                              : "Copiar Cupom"}
+                          </p>
+                        </FadeUpStagger>
+                      </>
+                    ) : (
+                      <>
+                        <p>
+                          {" "}
+                          {copiedText == "PRIMEIRA100"
+                            ? "Cupom copiado com sucesso"
+                            : "Copiar Cupom"}
+                        </p>
+                      </>
+                    )}
                   </span>
                 </Button>
               </div>
