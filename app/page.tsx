@@ -6,15 +6,14 @@ import { LampshadeHero as LampShade } from "@/components/component/lampshade-her
 import { CablesHero as Cables } from "@/components/component/cables-hero";
 import { AcessoriesHero as Acessories } from "@/components/component/acessories-hero";
 import { LampsHero as Lamps } from "@/components/component/lamps-hero";
-import { SocketsHero as Socket } from "@/components/component/sockets-hero";
 import { UtilitiesHero as Utilities } from "@/components/component/utilities-hero";
 import { SocialHero as Social } from "@/components/component/social-hero";
 import { InitialFooter } from "@/components/component/initial-footer";
 
 import { FadeUpStagger as Up } from "@/components/Animations/FadeUpStagger";
 import { CounponHero as Counpon } from "@/components/component/counpon-hero";
-import { LocationHero } from "@/components/component/location-hero";
 import { TestimonialsCard } from "@/components/component/testimonials-card";
+import { LocationHero } from "@/components/component/location-hero";
 
 export default function Home() {
   return (
@@ -30,6 +29,7 @@ export default function Home() {
           <Lamps />
           <Counpon />
           <TestimonialsCard />
+          <LocationHero />
           <Social />
           <Acess />
           <Payment />
