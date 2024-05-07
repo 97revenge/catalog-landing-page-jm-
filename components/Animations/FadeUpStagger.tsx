@@ -1,14 +1,20 @@
 "use client";
 
+import { motion, Variants } from "framer-motion";
+import React, { useState } from "react";
 
-import { motion } from "framer-motion";
-import React from "react";
+export const FadeUpStagger = ({ children }: { children: React.ReactNode }) => {
+  const [animationEnd, setAnimationEnd] = useState<boolean>(false);
 
-export const FadeUpStagger = ({ children }:{children:React.ReactNode}) => {
   const FADE_UP_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
   };
+  const FADE_DOWN_ANIMATION_VARIANTS = {
+    hidden: { opacity: -10, y: 0 },
+    show: { opacity: 0, y: 1, transition: { type: "blur" } },
+  };
+
   return (
     <motion.div
       initial="hidden"
@@ -22,8 +28,19 @@ export const FadeUpStagger = ({ children }:{children:React.ReactNode}) => {
           },
         },
       }}
+      exit={{ opacity: 0, x: "100%" }}
     >
-      <motion.div variants={FADE_UP_ANIMATION_VARIANTS} > {children}</motion.div>
+      <motion.div
+        variants={
+          animationEnd === false
+            ? FADE_UP_ANIMATION_VARIANTS
+            : FADE_DOWN_ANIMATION_VARIANTS
+        }
+        exit={{ opacity: 10, x: "100%" }}
+        onAnimationEnd={({}) => setAnimationEnd((preview) => !preview)}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 };

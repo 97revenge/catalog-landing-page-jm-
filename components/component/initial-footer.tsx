@@ -4,57 +4,54 @@ import QRCode, { QRCodeProps } from "react-qr-code";
 
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
+import Image from "next/image";
+
+const code: QRCodeProps = {
+  value: "https://www.jmluzearte.com.br/",
+  amplitude: 10,
+};
 
 export function InitialFooter() {
   return (
-    <footer className="flex flex-col animate-background items-center justify-between gap-y-4  py-8 px-4 md:flex-row md:gap-0 md:py-12 md:px-6 bg-gradient-to-r from-blue-100  to-blue-800 text-white">
-      <div className="flex items-center gap-4  ">
-        <img
-          alt="Logo"
-          className="rounded-full"
-          height={72}
-          src="https://images.tcdn.com.br/img/img_prod/1112215/1652709121_icone-_2_9_1.ico?6627e7696191c"
-          style={{
-            aspectRatio: "32/32",
-            objectFit: "cover",
-          }}
-          width={72}
-        />
-        <div className="grid gap-1  ">
-          <h4 className="text-2xl  flex flex-row font-semibold text-gray-800">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              className="current-fill  text-[#ff0a63] "
-            >
-              <path
-                fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"
-              />
-            </svg>
-            jmluzearte
-          </h4>
-          <p className="text-md text-gray-800 pr-40 max-w-xl ">
-            A JM Luz e arte transforma e desenvolve ideias em realidade,
-            customizando cabos e luminárias em peças decorativas. O que
-            proporciona uma experiência positiva aos nosso clientes,
-          </p>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-4">
-        <div className="w-full  flex items-center justify-center ">
-          <QRCode
-            size={106}
-            value={"https://www.jmluzearte.com.br/"}
-            viewBox={`0 0 256 256`}
-            className="rounded-md border border-4 shadow-xl"
+    <>
+      <footer className="bg-gradient-to-r from-blue-200  to-blue-800 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 dark:bg-gray-800">
+        <div className="flex items-center gap-4">
+          <Image
+            src={
+              "https://images.tcdn.com.br/img/img_prod/1112215/1652709121_icone-_2_9_1.ico?66332ea111b8d"
+            }
+            width={72}
+            height={72}
+            alt="e-commerce icon @jmluzearte"
+            quality={100}
           />
+          <div className="space-y-1">
+            <div className="flex flex-col w-full ">
+              <span className="flex flex-col  w-full text-center">
+                <h3 className="text-xl flex flex-row gap-x-1 items-center font-bold">
+                  <InstagramIcon className="current-fill text-red-700" />
+                  @jmluzearte
+                </h3>
+              </span>
+            </div>
+            <p className="text-gray-800 dark:text-gray-400 max-w-[300px]">
+              A JM Luz e arte transforma e desenvolve ideias em realidade,
+              customizando cabos e luminárias em peças decorativas. O que
+              proporciona uma experiência positiva aos nosso clientes,
+            </p>
+          </div>
         </div>
-      </div>
-    </footer>
+        <div className="w-auto bg-gray-200 rounded-xl flex flex-row items-center justify-center p-2">
+          <div className="bg-white p-4 rounded-lg shadow-lg dark:bg-gray-950 ">
+            <QRCode
+              value={code.value}
+              amplitude={code.amplitude}
+              className="w-36 p-2 h-36 shadow-xl"
+            />
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
 

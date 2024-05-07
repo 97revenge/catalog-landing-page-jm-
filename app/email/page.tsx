@@ -1,5 +1,6 @@
 "use client";
 
+import { MothersDayComponent } from "@/components/Email/MothersDayComponent";
 import { Email } from "@/components/Email/email";
 import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
@@ -51,7 +52,18 @@ export default function Page() {
   return (
     <>
       {view === true ? (
-        <Email />
+        <>
+          <span className=" relative top-4 text-center flex items-center justify-center">
+            se não conseguir ver o email {""}{" "}
+            <a
+              href="https://catalogojmluzearte.vercel.app/email/template?search=MAE100"
+              className=" transition auto hover:text-blue-500 px-3 text-lg font-bold"
+            >
+              clique aqui
+            </a>
+          </span>
+          <MothersDayComponent />
+        </>
       ) : (
         <>
           <Button onClick={() => send("enviado")}>Send Email</Button>

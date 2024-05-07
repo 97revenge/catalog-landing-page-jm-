@@ -27,9 +27,9 @@ export function LocationHero() {
             </TextAnimatedGradient>
           </div>
           <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-            Discover the heart of our operations, a state-of-the-art facility
-            that sets the standard for security and professionalism in the
-            industry.
+            Nossa entrega é totalmente segura e rápida. Sempre pensamos no
+            cliente, para garantir que ele receba seu pedido sem problemas e bem
+            rápido.
           </p>
         </div>
         <div className=" shadow-xl w-full max-w-4xl mx-auto flex items-center justify-center bg-blue-200 rounded-xl p-2">

@@ -5,10 +5,6 @@ import { keywords } from "@/lib/keywords";
 
 const inter = Sora({ subsets: ["latin"] });
 
-
-
-
-
 export const metadata: Metadata = {
   title: "Catálogo de Produtos | JM Luz e Arte",
 
@@ -20,7 +16,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
 
-
     images: [
       {
         url: "https://github.com/97revenge/jsdom-trial/assets/80254945/28fc654d-a943-440d-ba40-f65786dc02b2",
@@ -28,11 +23,9 @@ export const metadata: Metadata = {
         height: 630,
         alt: "Counpon Image for new clientes",
       },
-
     ],
-
-  }
-}
+  },
+};
 export default function RootLayout({
   children,
 }: Readonly<{
