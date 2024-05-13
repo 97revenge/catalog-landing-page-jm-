@@ -9,7 +9,21 @@ export const MothersDayComponent = () => {
             <a href="https://catalogojmluzearte.vercel.app/">
               <img
                 className="object-cover w-full h-full rounded-lg shadow-md "
-                src="https://iili.io/JrMtNGn.png"
+                src="https://i.ibb.co/TvvxJDt/Papel-A4-rosa-simples-de-feliz-dia-das-m-es-para-cartinha-1.jpg"
+                alt=""
+              />
+            </a>
+            <a href="https://catalogojmluzearte.vercel.app/">
+              <img
+                className="object-cover w-full h-full rounded-lg shadow-md "
+                src="https://iili.io/J4DMdVp.md.jpg"
+                alt=""
+              />
+            </a>
+            <a href="https://catalogojmluzearte.vercel.app/">
+              <img
+                className="object-cover w-full h-full rounded-lg shadow-md "
+                src="https://iili.io/J4DMnOG.jpg"
                 alt=""
               />
             </a>
