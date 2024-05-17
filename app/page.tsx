@@ -14,12 +14,17 @@ import { FadeUpStagger as Up } from "@/components/Animations/FadeUpStagger";
 import { CounponHero as Counpon } from "@/components/component/counpon-hero";
 import { TestimonialsCard } from "@/components/component/testimonials-card";
 import { LocationHero } from "@/components/component/location-hero";
+import { ChatButton } from "@/components/Buttons/ChatButton";
+import { ChatLayout } from "@/components/Credenza/ChatLayout";
 
 export default function Home() {
   return (
     <>
       <Up>
         <div className="bg-gray-100/20">
+          <ChatLayout>
+            <ChatButton />
+          </ChatLayout>
           <Header />
           <Hero />
           <Utilities />

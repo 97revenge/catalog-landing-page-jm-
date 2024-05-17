@@ -1,27 +1,26 @@
 "use client";
-import Image from "next/image";
 
 import { InitialBanner } from "./initial-banner";
-import { Button } from "@/components/ui/button";
 import { HeaderCategory as Category } from "./header-category";
-import { ProductCard } from "./product-card";
 import { useEffect, useState } from "react";
-import { Card } from "../ui/card";
-import { Badge } from "../ui/badge";
-
-import { getCookies as cookies } from "@/actions/cookies";
 
 import { TextAnimatedGradient } from "./text-gradient";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { FadeUpStagger as Up } from "../Animations/FadeUpStagger";
 import { HighlightsCard } from "./highlights-card";
+import { useFetch } from "@/hooks/useFetch";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 export function InitialHero() {
   const [value, setValue] = useState<Array<any>>([]);
+
+  // const [isPending, instance] = useFetch("api/");
 
   useEffect(() => {
     async function HandleValue() {
@@ -51,12 +50,12 @@ export function InitialHero() {
             </p>
           </Category>
         </summary>
-        <div className="  container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0 animated-background bg-gradient-to-r from-yellow-300/10 via-orange-700/10 to-yellow-400/30 ">
-          <div>
+        <div className=" flex flex-row items-center justify-center transition-auto container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0  animated-background bg-gradient-to-r from-green-300/10 via-blue-500/10 to-purple-600/10 ">
+          <Carousel className="w-full my-auto">
             <Up>
               <HighlightsCard />
             </Up>
-          </div>
+          </Carousel>
         </div>
       </div>
     </section>

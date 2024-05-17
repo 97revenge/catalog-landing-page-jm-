@@ -1,6 +1,7 @@
 "use client";
 
 import { MothersDayComponent } from "@/components/Email/MothersDayComponent";
+import { OffersComponent } from "@/components/Email/OffersComponent";
 import { Email } from "@/components/Email/email";
 import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
@@ -62,7 +63,7 @@ export default function Page() {
               clique aqui
             </a>
           </span>
-          <MothersDayComponent />
+          <OffersComponent />
         </>
       ) : (
         <>
