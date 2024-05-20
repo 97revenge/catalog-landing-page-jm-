@@ -1,13 +1,23 @@
-export const useFetch = async () => {
-  let i;
-  const response = await fetch("http://localhost:3000/api/test", {
-    method: "GET",
-    next: { revalidate: 3600 },
-  });
+"use client";
 
-  const data = await response.json();
+import { useEffect, useState } from "react";
 
-  i = data;
+export const useFetch = ({ url }: { url: string }) => {
+  const [state, setState] = useState<Array<any>>([]);
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch(url, {
+        method: "GET",
+        next: { revalidate: 3600 },
+      });
 
-  return { data };
+      const data = await response.json();
+
+      setState(data);
+    }
+
+    getData();
+  }, []);
+
+  return [state];
 };
