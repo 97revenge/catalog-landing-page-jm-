@@ -16,6 +16,7 @@ import { TestimonialsCard } from "@/components/component/testimonials-card";
 import { LocationHero } from "@/components/component/location-hero";
 import { ChatButton } from "@/components/Buttons/ChatButton";
 import { ChatLayout } from "@/components/Credenza/ChatLayout";
+import { HighlighHero } from "@/components/component/highligh-hero";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
           </ChatLayout>
           <Header />
           <Hero />
+          {/* <HighlighHero /> */}
           <Utilities />
           <LampShade />
           <Cables />

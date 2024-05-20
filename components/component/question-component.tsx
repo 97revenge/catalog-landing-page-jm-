@@ -8,26 +8,35 @@ export function QuestionComponent() {
         <div className="flex flex-col">
           <div className="group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-            <Button className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full">
-              <RocketIcon className="w-10 h-10 text-primary" />
+            <Button
+              type="submit"
+              className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
+            >
+              <LineMdChat className="w-10 h-10 text-primary fill-current text-blue-500" />
               <h3 className="text-2xl font-bold text-white">Quem somos ?</h3>
             </Button>
           </div>
           <div className="group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-            <div className="relative p-6 flex flex-col items-start gap-4 h-full">
-              <BriefcaseIcon className="w-10 h-10 text-primary" />
-              <h3 className="text-2xl font-bold text-white">Onde estamos ?</h3>
-            </div>
+            <Button
+              type="submit"
+              className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
+            >
+              <LineMdLightbulb className="w-10 h-10 text-primary current fill text-blue-500" />
+              <h3 className="text-2xl font-bold text-white">
+                Com o que trabalhamos?{" "}
+              </h3>
+            </Button>
           </div>
           <div className="group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-            <div className="relative p-6 flex flex-col items-start gap-4 h-full">
-              <CogIcon className="w-10 h-10 text-primary" />
-              <h3 className="text-2xl font-bold text-white">
-                Quais são os nossos produtos ?
-              </h3>
-            </div>
+            <Button
+              type="submit"
+              className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
+            >
+              <LineMdCompassLoop className="w-10 h-10 text-primary" />
+              <h3 className="text-2xl font-bold text-white">Onde estamos ? </h3>
+            </Button>
           </div>
         </div>
       </div>
@@ -55,78 +64,173 @@ function BoltIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   );
 }
 
-function BriefcaseIcon(
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
+export function LineMdLightbulb(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="1em"
+      height="1em"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      {...props}
     >
-      <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-      <rect width="20" height="14" x="2" y="6" rx="2" />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeDasharray="46"
+        strokeDashoffset="46"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M12 17H9V14.1973C7.2066 13.1599 6 11.2208 6 9C6 5.68629 8.68629 3 12 3C15.3137 3 18 5.68629 18 9C18 11.2208 16.7934 13.1599 15 14.1973V17z"
+      >
+        <animate
+          fill="freeze"
+          attributeName="stroke-dashoffset"
+          dur="0.4s"
+          values="46;0"
+        ></animate>
+      </path>
+      <rect width="6" height="0" x="9" y="20" fill="currentColor" rx="1">
+        <animate
+          fill="freeze"
+          attributeName="height"
+          begin="0.5s"
+          dur="0.2s"
+          values="0;2"
+        ></animate>
+      </rect>
     </svg>
   );
 }
 
-function CogIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+export function LineMdCompassLoop(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="1em"
+      height="1em"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      {...props}
     >
-      <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" />
-      <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-      <path d="M12 2v2" />
-      <path d="M12 22v-2" />
-      <path d="m17 20.66-1-1.73" />
-      <path d="M11 10.27 7 3.34" />
-      <path d="m20.66 17-1.73-1" />
-      <path d="m3.34 7 1.73 1" />
-      <path d="M14 12h8" />
-      <path d="M2 12h2" />
-      <path d="m20.66 7-1.73 1" />
-      <path d="m3.34 17 1.73-1" />
-      <path d="m17 3.34-1 1.73" />
-      <path d="m11 13.73-4 6.93" />
+      <mask id="lineMdCompassLoop0">
+        <path
+          fill="none"
+          stroke="#282c34"
+          strokeDasharray="60"
+          strokeDashoffset="60"
+          strokeLinecap="round"
+          strokeWidth="2"
+          d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"
+        >
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            dur="0.5s"
+            values="60;0"
+          ></animate>
+        </path>
+        <path fill="#fff" d="M11 11L12 12L13 13L12 12z">
+          <set attributeName="opacity" begin="0.6s" to="1"></set>
+          <animate
+            fill="freeze"
+            attributeName="d"
+            begin="0.6s"
+            dur="0.3s"
+            values="M11 11L12 12L13 13L12 12z;M10.2 10.2L17 7L13.8 13.8L7 17z"
+          ></animate>
+          <animateTransform
+            attributeName="transform"
+            begin="0.5s"
+            dur="9s"
+            repeatCount="indefinite"
+            type="rotate"
+            values="-180 12 12;0 12 12;0 12 12;0 12 12;0 12 12;270 12 12;-90 12 12;0 12 12;-180 12 12;-35 12 12;-40 12 12;-45 12 12;-45 12 12;-110 12 12;-135 12 12;-180 12 12"
+          ></animateTransform>
+        </path>
+        <circle cx="12" cy="12" r="1" fillOpacity="0">
+          <animate
+            fill="freeze"
+            attributeName="fill-opacity"
+            begin="0.8s"
+            dur="0.3s"
+            values="0;1"
+          ></animate>
+        </circle>
+      </mask>
+      <rect
+        width="24"
+        height="24"
+        fill="currentColor"
+        mask="url(#lineMdCompassLoop0)"
+      ></rect>
     </svg>
   );
 }
 
-function RocketIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+export function LineMdChat(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="1em"
+      height="1em"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      {...props}
     >
-      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path
+          strokeDasharray="68"
+          strokeDashoffset="68"
+          d="M3 19.5V4C3 3.44772 3.44772 3 4 3H20C20.5523 3 21 3.44772 21 4V16C21 16.5523 20.5523 17 20 17H5.5z"
+        >
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            dur="0.6s"
+            values="68;0"
+          ></animate>
+        </path>
+        <path strokeDasharray="10" strokeDashoffset="10" d="M8 7h8" opacity="0">
+          <set attributeName="opacity" begin="0.7s" to="1"></set>
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.7s"
+            dur="0.2s"
+            values="10;0"
+          ></animate>
+        </path>
+        <path
+          strokeDasharray="10"
+          strokeDashoffset="10"
+          d="M8 10h8"
+          opacity="0"
+        >
+          <set attributeName="opacity" begin="0.8s" to="1"></set>
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.8s"
+            dur="0.2s"
+            values="10;0"
+          ></animate>
+        </path>
+        <path strokeDasharray="6" strokeDashoffset="6" d="M8 13h4" opacity="0">
+          <set attributeName="opacity" begin="0.9s" to="1"></set>
+          <animate
+            fill="freeze"
+            attributeName="stroke-dashoffset"
+            begin="0.9s"
+            dur="0.2s"
+            values="6;0"
+          ></animate>
+        </path>
+      </g>
     </svg>
   );
 }

@@ -1,5 +1,7 @@
 import { Tailwind } from "@react-email/components";
 
+import { Player } from "video-react";
+
 export const OffersComponent = () => {
   return (
     <>
@@ -8,28 +10,17 @@ export const OffersComponent = () => {
           <main className="mt-8">
             <a href="https://catalogojmluzearte.vercel.app/">
               <video width="750" height="500" controls>
-                <source src="../../lib/videos/video01" type="video/mp4" />
+                <source
+                  src="https://github.com/97revenge/thunder-organics/assets/80254945/6fc1fb0f-fc9f-4460-ae16-ada2624c6914"
+                  type="video/mp4"
+                />
               </video>
-            </a>
-            <a href="https://catalogojmluzearte.vercel.app/">
-              <img
-                className="object-cover w-full h-full rounded-lg shadow-md "
-                src="https://iili.io/J4DMdVp.md.jpg"
-                alt=""
-              />
-            </a>
-            <a href="https://catalogojmluzearte.vercel.app/">
-              <img
-                className="object-cover w-full h-full rounded-lg shadow-md "
-                src="https://iili.io/J4DMnOG.jpg"
-                alt=""
-              />
             </a>
 
             <p className="mt-2 text-gray-500 text-center">
               Use o código de cupom{" "}
-              <b className="text-2xl text-red-500">MAE100</b> e ao finalizar sua
-              compra e economize até 35% em todos os produtos de{" "}
+              <b className="text-2xl text-red-500">PRIMEIRA100</b> e ao
+              finalizar sua compra e economize até 35% em todos os produtos de{" "}
               <b className="text-2xl underline">
                 Iluminação, Abajures & Útilidades
               </b>{" "}

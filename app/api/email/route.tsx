@@ -3,8 +3,7 @@ import nodemailer from "nodemailer";
 import { Email } from "@/components/Email/email";
 
 import { render } from "@react-email/render";
-import { prisma } from "@/lib/prisma/prisma";
-import { MothersDayComponent } from "@/components/Email/MothersDayComponent";
+import { OffersComponent } from "@/components/Email/OffersComponent";
 
 export const POST = async () => {
   try {
@@ -119,7 +118,7 @@ export const POST = async () => {
       },
     });
 
-    const emailHtml = render(<MothersDayComponent />);
+    const emailHtml = render(<OffersComponent />);
 
     const options = {
       from: "jmluzearte@gmail.com",

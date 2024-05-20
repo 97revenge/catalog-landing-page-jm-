@@ -27,7 +27,7 @@ export function InitialHero() {
       <InitialBanner />
 
       <div>
-        <summary>
+        {/* <summary>
           <Category>
             <div>
               <TextAnimatedGradient>Novidade na área </TextAnimatedGradient>
@@ -36,8 +36,8 @@ export function InitialHero() {
               Extensões e Luminárias com cabo reforçado
             </p>
           </Category>
-        </summary>
-        <div className=" flex flex-row items-start justify-start bg-red-200 py-4">
+        </summary> */}
+        {/* <div className=" flex flex-row items-start justify-start bg-red-200 py-4">
           <Up>
             <Carousel className="">
               <CarouselContent>
@@ -120,7 +120,7 @@ export function InitialHero() {
               </CarouselContent>
             </Carousel>
           </Up>
-        </div>
+        </div> */}
       </div>
     </section>
   );

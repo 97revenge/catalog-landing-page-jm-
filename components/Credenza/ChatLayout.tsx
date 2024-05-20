@@ -58,7 +58,7 @@ export const ChatLayout = ({ ...props }) => {
                                       alt="John Doe"
                                       src="https://api.iconify.design/line-md:iconify1.svg"
                                     />
-                                    <AvatarFallback>JD</AvatarFallback>
+                                    <AvatarFallback>😀</AvatarFallback>
                                   </Avatar>
                                 </div>
                               </>
@@ -70,7 +70,7 @@ export const ChatLayout = ({ ...props }) => {
                                       alt="You"
                                       src="https://api.iconify.design/bi:stars.svg"
                                     />
-                                    <AvatarFallback>YO</AvatarFallback>
+                                    <AvatarFallback>🤖</AvatarFallback>
                                   </Avatar>
                                 </div>
                               </>
