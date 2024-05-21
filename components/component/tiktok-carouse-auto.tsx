@@ -12,11 +12,13 @@ import {
 import { TikTokEmbed } from "react-social-media-embed";
 
 const url: Array<string> = [
-  "https://www.tiktok.com/@edilsondagel/photo/7310723335606865158",
   "https://www.tiktok.com/@edilsondagel/video/7295959577940561158",
   "https://www.tiktok.com/@edilsondagel/photo/7290339754187492614",
   "https://www.tiktok.com/@edilsondagel/video/6823523511059909894",
   "https://www.tiktok.com/@edilsondagel/video/6823520225502219526",
+  "https://www.tiktok.com/@edilsondagel/video/7371126488202022150",
+  "https://www.tiktok.com/@edilsondagel/video/7370048550517902597",
+  "https://www.tiktok.com/@edilsondagel/photo/7310723335606865158",
 ];
 
 export function CarouselPlugin({ ...props }) {
