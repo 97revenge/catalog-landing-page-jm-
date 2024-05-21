@@ -48,13 +48,14 @@ import { WhatsAppButton } from "./whatsapp-button";
 import { NeutronLoader } from "../Loaders/NeutronLoader";
 
 import { useIntersectionObserver } from "usehooks-ts";
+import { useFetch } from "@/hooks/useFetch";
 
-export function UtilitiesHero() {
-  const { isIntersecting, ref } = useIntersectionObserver();
-
-  const [isPending, startTransition] = useTransition();
+export function UtilitiesHero({ url }: { url: string }) {
+  // const { isIntersecting, ref } = useIntersectionObserver();
 
   const [clicked, setClicket] = useState<boolean>(false);
+
+  const { state, isPending } = useFetch({ url });
 
   const form = useForm<z.infer<typeof whatsAppSchema>>({
     resolver: zodResolver(whatsAppSchema),
@@ -65,23 +66,9 @@ export function UtilitiesHero() {
 
   const router = useRouter();
 
-  const [value, setValue] = useState<Array<any>>([]);
-
-  useEffect(() => {
-    startTransition(async () => {
-      const response = await fetch("/api/utilities", {
-        method: "GET",
-        next: { revalidate: 3600 },
-      });
-      const data = await response.json();
-
-      setValue(await data);
-    });
-  }, []);
-
   return (
     <>
-      <div ref={ref}>
+      <div>
         <>
           <summary>
             <Category>
@@ -110,20 +97,18 @@ export function UtilitiesHero() {
                 <Up>
                   <Carousel className="w-full my-auto flex items-center justify-center">
                     <CarouselContent className="ml-2 md:-ml-4 ">
-                      {value.map((item: any, index: any) => {
+                      {state.map((item: any, index: any) => {
                         const handler = (value: any) => {
-                          startTransition(() => {
-                            const { number } = value;
+                          const { number } = value;
 
-                            return router.push(
-                              `https://api.whatsapp.com/send?phone=${number}&text=Quero te compartilhar este produto: *${item.title}* na JM Luz e Arte ✨ 
+                          return router.push(
+                            `https://api.whatsapp.com/send?phone=${number}&text=Quero te compartilhar este produto: *${item.title}* na JM Luz e Arte ✨ 
   *Link do Produto*: ${item.url}
 
   *Shopee* : https://shopee.com.br/jm_luzearte
 
   `
-                            );
-                          });
+                          );
                         };
 
                         return (

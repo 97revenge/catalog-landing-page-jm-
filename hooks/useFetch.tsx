@@ -1,13 +1,15 @@
 "use client";
 
 import next from "next";
-import { useEffect, useState } from "react";
+import { useTransition, useEffect, useState } from "react";
 
 export const useFetch = ({ url }: { url: string }) => {
   const [state, setState] = useState<Array<any>>([]);
 
+  const [isPending, startTransition] = useTransition();
+
   useEffect(() => {
-    async function getData() {
+    startTransition(async () => {
       const response = await fetch(url, {
         method: "GET",
         next: { revalidate: 3600 },
@@ -18,10 +20,8 @@ export const useFetch = ({ url }: { url: string }) => {
       const data = await response.json();
 
       setState(data);
-    }
-
-    getData();
+    });
   }, []);
 
-  return [state];
+  return { state, isPending };
 };

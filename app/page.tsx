@@ -6,7 +6,7 @@ import { LampshadeHero as LampShade } from "@/components/component/lampshade-her
 import { CablesHero as Cables } from "@/components/component/cables-hero";
 import { AcessoriesHero as Acessories } from "@/components/component/acessories-hero";
 import { LampsHero as Lamps } from "@/components/component/lamps-hero";
-import { UtilitiesHero as Utilities } from "@/components/component/utilities-hero";
+import { UtilitiesHero as ProductCart } from "@/components/component/utilities-hero";
 import { SocialHero as Social } from "@/components/component/social-hero";
 import { InitialFooter } from "@/components/component/initial-footer";
 
@@ -28,7 +28,7 @@ export default async function Home() {
           <Header />
           <Hero />
           <HighlighHero />
-          <Utilities />
+          <ProductCart url="/api/utilities" />
           <LampShade />
           <Cables />
           <Acessories />

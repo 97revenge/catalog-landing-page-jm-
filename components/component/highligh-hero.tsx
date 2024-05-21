@@ -11,7 +11,7 @@ import { CurrencyIcon, ScalingIcon, StarIcon } from "lucide-react";
 import { Badge } from "../ui/badge";
 
 import { ResponsiveLine } from "@nivo/line";
-import { JSX, SVGProps, useRef } from "react";
+import { JSX, SVGProps, useRef, useTransition } from "react";
 import { ClassAttributes, HTMLAttributes } from "react";
 import { useFetch } from "@/hooks/useFetch";
 import { HightLightSchema, hightLightSchema } from "@/types/highLight";
@@ -19,141 +19,157 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { z } from "zod";
 
 import Autoplay from "embla-carousel-autoplay";
+import { FadeUpStagger } from "../Animations/FadeUpStagger";
+import { NeutronLoader } from "../Loaders/NeutronLoader";
 export function HighlighHero() {
-  const [state] = useFetch({
+  const { state, isPending } = useFetch({
     url: "api/newest",
   });
 
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  if (isPending) {
+    return (
+      <>
+        <div className="w-full h-auto py-12 flex items-center justify-center">
+          <NeutronLoader />
+        </div>
+      </>
+    );
+  }
 
   return (
-    <section className=" items-start justify-start  py-4 w-full  ">
-      <div className="flex sm:flex-col xl:flex-row items-start justify-between">
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 3000,
-            }),
-          ]}
-          className=" w-[100%]"
-        >
-          <CarouselContent>
-            {state.map((item: z.infer<typeof hightLightSchema>, index: any) => {
-              return (
-                <>
-                  <CarouselItem
-                    key={index}
-                    className=" flex flex-col sm:flex-col  lg:flex-row items-center  justify-center p-4  w-full"
-                  >
-                    <div className="p-12 flex items-center justify-center ">
-                      <HighlightsCard>
-                        <Card className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
-                          <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
-                            <Badge
-                              className="bg-yellow-500 text-white px-2 py-1 rounded-full"
-                              variant="outline"
-                            >
-                              <StarIcon className="h-4 w-4 -translate-x-1 animate-pulse" />
-                              Produto em destaque
-                            </Badge>
-                            <Badge
-                              className="bg-red-500 text-white px-2 py-1 rounded-full"
-                              variant="outline"
-                            >
-                              {item.discount}% de desconto
-                            </Badge>
-                          </div>
-                          <img
-                            alt="Featured Product"
-                            className=" group-hover:scale-105 transition-transform duration-300"
-                            height={350}
-                            src={`${item.image}`}
-                            style={{
-                              aspectRatio: "500/400",
-                              objectFit: "cover",
-                            }}
-                            width={500}
-                          />
-                          <CardContent className="p-6 bg-white dark:bg-gray-950">
-                            <div className="flex items-center justify-between mb-4">
-                              <h3 className="text-2xl font-bold">
-                                {item.title}
-                              </h3>
-                              <div className="flex items-center gap-2">
-                                <StarIcon className="h-5 w-5 text-yellow-500" />
-                                <span className="text-gray-500 dark:text-gray-400 text-sm">
-                                  {item.note}
-                                </span>
-                              </div>
-                            </div>
-                            <p className=" text-start  font-bold text-gray-500 dark:text-gray-400 mb-6">
-                              {item.description}
-                            </p>
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2 text-gray-900 dark:text-gray-50 font-semibold">
-                                <CurrencyIcon className="h-12 w-12 current-fill text-yellow-500 shadow-xl text-xl rounded-full bg-gray-200" />
-                                <span className="px-2">
-                                  <span className="text-red-500  ">
-                                    {item.value[0]}
-                                  </span>{" "}
-                                  por{" "}
-                                  <span className="px-1 text-green-500 text-3xl">
-                                    {item.value[1]}
-                                  </span>{" "}
-                                </span>
-                              </div>
-                              <Link href={item.url} target="_blank">
-                                <Button
-                                  className="w-full max-w-[150px] bg-green-500"
-                                  size="lg"
-                                >
-                                  Comprar Agora
-                                </Button>
-                              </Link>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </HighlightsCard>
-                    </div>
-                    <div className=" mx-12 bg-gray-100  my-auto p-4 rounded-xl shadow-xl space-y-6">
-                      <div className="space-y-2">
-                        <TextAnimatedGradient>
-                          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                            {item.insights?.title}
-                          </h2>
-                        </TextAnimatedGradient>
-                        <p className="text-gray-500 text-center font-bold md:text-xl dark:text-gray-400">
-                          {item.insights?.description}
-                        </p>
-                      </div>
-                      <div className="grid grid-cols-2 gap-6">
-                        {item.insights?.content.map((item) => {
-                          return (
-                            <>
-                              <div className="transition-all blur-none hover:blur-none flex items-start space-x-3">
-                                <ViewIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-                                <div>
-                                  <h4 className="text-lg font-medium">
-                                    {item?.title}
-                                  </h4>
-                                  <p className="text-gray-500 dark:text-gray-400">
-                                    {item?.descripton}
-                                  </p>
+    <>
+      <FadeUpStagger>
+        <section className=" items-start justify-start  py-4 w-full  ">
+          <div className="flex sm:flex-col xl:flex-row items-start justify-between">
+            <Carousel
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                }),
+              ]}
+              className=" w-[100%]"
+            >
+              <CarouselContent>
+                {state.map(
+                  (item: z.infer<typeof hightLightSchema>, index: any) => {
+                    return (
+                      <>
+                        <CarouselItem
+                          key={index}
+                          className=" flex flex-col sm:flex-col  lg:flex-row items-center  justify-center p-4  w-full"
+                        >
+                          <div className="p-12 flex items-center justify-center ">
+                            <HighlightsCard>
+                              <Card className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+                                <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+                                  <Badge
+                                    className="bg-yellow-500 text-white px-2 py-1 rounded-full"
+                                    variant="outline"
+                                  >
+                                    <StarIcon className="h-4 w-4 -translate-x-1 animate-pulse" />
+                                    Produto em destaque
+                                  </Badge>
+                                  <Badge
+                                    className="bg-red-500 text-white px-2 py-1 rounded-full"
+                                    variant="outline"
+                                  >
+                                    {item.discount}% de desconto
+                                  </Badge>
                                 </div>
-                              </div>
-                            </>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </CarouselItem>
-                </>
-              );
-            })}
-          </CarouselContent>
-        </Carousel>
-      </div>
-    </section>
+                                <img
+                                  alt="Featured Product"
+                                  className=" group-hover:scale-105 transition-transform duration-300"
+                                  height={350}
+                                  src={`${item.image}`}
+                                  style={{
+                                    aspectRatio: "500/400",
+                                    objectFit: "cover",
+                                  }}
+                                  width={500}
+                                />
+                                <CardContent className="p-6 bg-white dark:bg-gray-950">
+                                  <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-2xl font-bold">
+                                      {item.title}
+                                    </h3>
+                                    <div className="flex items-center gap-2">
+                                      <StarIcon className="h-5 w-5 text-yellow-500" />
+                                      <span className="text-gray-500 dark:text-gray-400 text-sm">
+                                        {item.note}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <p className=" text-start  font-bold text-gray-500 dark:text-gray-400 mb-6">
+                                    {item.description}
+                                  </p>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2 text-gray-900 dark:text-gray-50 font-semibold">
+                                      <CurrencyIcon className="h-12 w-12 current-fill text-yellow-500 shadow-xl text-xl rounded-full bg-gray-200" />
+                                      <span className="px-2">
+                                        <span className="text-red-500  ">
+                                          {item.value[0]}
+                                        </span>{" "}
+                                        por{" "}
+                                        <span className="px-1 text-green-500 text-3xl">
+                                          {item.value[1]}
+                                        </span>{" "}
+                                      </span>
+                                    </div>
+                                    <Link href={item.url} target="_blank">
+                                      <Button
+                                        className="w-full max-w-[150px] bg-green-500"
+                                        size="lg"
+                                      >
+                                        Comprar Agora
+                                      </Button>
+                                    </Link>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            </HighlightsCard>
+                          </div>
+                          <div className=" mx-12 bg-gray-100  my-auto p-4 rounded-xl shadow-xl space-y-6">
+                            <div className="space-y-2">
+                              <TextAnimatedGradient>
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                                  {item.insights?.title}
+                                </h2>
+                              </TextAnimatedGradient>
+                              <p className="text-gray-500 text-center font-bold md:text-xl dark:text-gray-400">
+                                {item.insights?.description}
+                              </p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-6">
+                              {item.insights?.content.map((item) => {
+                                return (
+                                  <>
+                                    <div className="transition-all blur-none hover:blur-none flex items-start space-x-3">
+                                      <ViewIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                                      <div>
+                                        <h4 className="text-lg font-medium">
+                                          {item?.title}
+                                        </h4>
+                                        <p className="text-gray-500 dark:text-gray-400">
+                                          {item?.descripton}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </CarouselItem>
+                      </>
+                    );
+                  }
+                )}
+              </CarouselContent>
+            </Carousel>
+          </div>
+        </section>
+      </FadeUpStagger>
+    </>
   );
 }
 

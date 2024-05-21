@@ -24,6 +24,7 @@ export function WordPullUp({ text }: { text: string }) {
           key={i}
           variants={item}
           style={{ display: "inline-block", paddingRight: "15px" }}
+          className="text-center"
         >
           {word === "" ? <span>&nbsp;</span> : word}
         </motion.span>
