@@ -20,8 +20,6 @@ import {
 } from "@/components/ui/carousel";
 
 export function InitialHero() {
-  const [state] = useFetch({ url: "/api/newest" });
-
   return (
     <section id="primary" className="w-full">
       <InitialBanner />

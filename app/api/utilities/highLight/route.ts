@@ -1,7 +1,7 @@
 import { HightLightSchema } from "@/types/highLight";
 
 export const GET = () => {
-  const data: HightLightSchema = [
+  const data: any = [
     {
       discount: 25,
       image:

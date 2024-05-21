@@ -17,8 +17,7 @@ import { LocationHero } from "@/components/component/location-hero";
 import { ChatButton } from "@/components/Buttons/ChatButton";
 import { ChatLayout } from "@/components/Credenza/ChatLayout";
 import { HighlighHero } from "@/components/component/highligh-hero";
-
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Up>
@@ -28,7 +27,7 @@ export default function Home() {
           </ChatLayout>
           <Header />
           <Hero />
-          {/* <HighlighHero /> */}
+          <HighlighHero />
           <Utilities />
           <LampShade />
           <Cables />
