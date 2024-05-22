@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 
+import Autoplay from "embla-carousel-autoplay";
+
 import { Button } from "@/components/ui/button";
 import { HeaderCategory as Category } from "./header-category";
 import { ProductCard } from "./product-card";
-import { useEffect, useState, useTransition } from "react";
+import { SVGProps, useEffect, useState, useTransition } from "react";
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 
@@ -49,6 +51,7 @@ import { NeutronLoader } from "../Loaders/NeutronLoader";
 
 import { useIntersectionObserver } from "usehooks-ts";
 import { useFetch } from "@/hooks/useFetch";
+import { PingLoader } from "../Loaders/PingLoader";
 
 export function UtilitiesHero({ url }: { url: string }) {
   // const { isIntersecting, ref } = useIntersectionObserver();
@@ -70,7 +73,7 @@ export function UtilitiesHero({ url }: { url: string }) {
     <>
       <div>
         <>
-          <summary>
+          {/* <summary>
             <Category>
               <FadeDownStagger>
                 <TextAnimatedGradient>Útilidades </TextAnimatedGradient>
@@ -84,18 +87,25 @@ export function UtilitiesHero({ url }: { url: string }) {
                 </p>
               </FadeDownStagger>
             </Category>
-          </summary>
+          </summary> */}
           <div className="transition-auto container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0  animated-background bg-gradient-to-r from-green-300/10 via-blue-500/10 to-purple-600/10 ">
             {isPending ? (
               <>
                 <div className=" py-2 transition-auto h-[150px] flex items-center justify-center bg-transparent">
-                  <NeutronLoader />
+                  <PingLoader />
                 </div>
               </>
             ) : (
               <>
                 <Up>
-                  <Carousel className="w-full my-auto flex items-center justify-center">
+                  <Carousel
+                    plugins={[
+                      Autoplay({
+                        delay: 3500,
+                      }),
+                    ]}
+                    className="w-full my-auto flex items-center justify-center"
+                  >
                     <CarouselContent className="ml-2 md:-ml-4 ">
                       {state.map((item: any, index: any) => {
                         const handler = (value: any) => {
@@ -204,16 +214,40 @@ export function UtilitiesHero({ url }: { url: string }) {
                                       {item.description}
                                     </p>
 
-                                    <div className=" p-2 w-full  flex items-center justify-center content-center">
-                                      <Button className=" w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
-                                        <Link
-                                          href={item.url}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                        >
-                                          Dar uma olhada
-                                        </Link>
-                                      </Button>
+                                    <div className="  w-full  flex items-center justify-center content-center">
+                                      <div className="w-full h-12 p-4 gap-x-2 flex flex-row    ">
+                                        <Button className="h-12 relative bottom-4 w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
+                                          <Link
+                                            href={item.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            <SubwayBag className="text-2xl" />
+                                          </Link>
+                                        </Button>
+                                        <Button className="h-12 relative bottom-4 w-full my-2 rounded bg-[#f6422e]  text-sm font-medium transition hover:scale-105 hover:bg-[#f6422e]">
+                                          <Link
+                                            href={
+                                              "https://shopee.com.br/jm_luzearte?shopCollection=152524164#product_list"
+                                            }
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            <SimpleIconsShopee className="text-2xl" />
+                                          </Link>
+                                        </Button>
+                                        <Button className="h-12 relative bottom-4 w-full my-2 rounded bg-[#e2350b]  text-sm font-medium transition hover:scale-105 hover:bg-[#e2350b]">
+                                          <Link
+                                            href={
+                                              "https://www.aliexpress.com/store/1103015110"
+                                            }
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            <ArcticonsAliexpress className="text-2xl" />
+                                          </Link>
+                                        </Button>
+                                      </div>
                                       <DialogWhatsapp>
                                         <Form {...form}>
                                           <form
@@ -272,5 +306,103 @@ export function UtilitiesHero({ url }: { url: string }) {
         </>
       </div>
     </>
+  );
+}
+
+export function SubwayBag(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M421.2 128h-42.7v21.3c0 23.5-19.1 42.7-42.7 42.7c-23.5 0-42.7-19.1-42.7-42.7V128h-85.3v21.3c0 23.5-19.1 42.7-42.7 42.7c-23.5 0-42.7-19.1-42.7-42.7V128H79.9c0 213.3-21.3 384-21.3 384h384c-.1 0-21.4-170.7-21.4-384m-256 42.7c11.8 0 21.3-9.5 21.3-21.3v-42.7c0-35.4 28.6-64 64-64s64 28.6 64 64v42.7c0 11.8 9.5 21.3 21.3 21.3s21.3-9.5 21.3-21.3v-42.7C357.2 47.8 309.4 0 250.5 0c-58.9 0-106.7 47.8-106.7 106.7v42.7c.1 11.7 9.6 21.3 21.4 21.3"
+      ></path>
+    </svg>
+  );
+}
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="32"
+  height="32"
+  viewBox="0 0 24 24"
+>
+  <path
+    fill="currentColor"
+    d="M15.941 17.963c.23-1.879-.98-3.077-4.175-4.097c-1.548-.528-2.277-1.22-2.26-2.171c.065-1.056 1.048-1.825 2.352-1.85a5.3 5.3 0 0 1 2.883.89c.116.072.197.06.263-.04c.09-.144.315-.493.39-.62c.051-.08.061-.186-.068-.28c-.185-.137-.704-.415-.983-.532a6.5 6.5 0 0 0-2.511-.514c-1.91.008-3.413 1.215-3.54 2.826q-.122 1.746 1.73 2.827c.263.152 1.68.716 2.244.892c1.774.552 2.695 1.542 2.478 2.697c-.197 1.047-1.299 1.724-2.818 1.744c-1.203-.046-2.287-.537-3.127-1.19l-.141-.11c-.104-.08-.218-.075-.287.03c-.05.077-.376.547-.458.67c-.077.108-.035.168.045.234c.35.293.817.613 1.134.775a6.7 6.7 0 0 0 2.829.727a4.9 4.9 0 0 0 2.075-.354c1.095-.465 1.803-1.394 1.945-2.554M12 1.401c-2.068 0-3.754 1.95-3.833 4.39h7.665C15.751 3.35 14.066 1.4 12 1.4m7.851 22.598l-.08.001l-15.784-.002c-1.074-.04-1.863-.91-1.971-1.991l-.01-.195l-.707-15.526a.46.46 0 0 1 .45-.494h4.975C6.845 2.568 9.16 0 12 0s5.153 2.569 5.275 5.79h4.968a.46.46 0 0 1 .458.483l-.773 15.588l-.007.131c-.094 1.094-.979 1.977-2.07 2.006"
+  />
+</svg>;
+
+export function SimpleIconsShopee(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M15.941 17.963c.23-1.879-.98-3.077-4.175-4.097c-1.548-.528-2.277-1.22-2.26-2.171c.065-1.056 1.048-1.825 2.352-1.85a5.3 5.3 0 0 1 2.883.89c.116.072.197.06.263-.04c.09-.144.315-.493.39-.62c.051-.08.061-.186-.068-.28c-.185-.137-.704-.415-.983-.532a6.5 6.5 0 0 0-2.511-.514c-1.91.008-3.413 1.215-3.54 2.826q-.122 1.746 1.73 2.827c.263.152 1.68.716 2.244.892c1.774.552 2.695 1.542 2.478 2.697c-.197 1.047-1.299 1.724-2.818 1.744c-1.203-.046-2.287-.537-3.127-1.19l-.141-.11c-.104-.08-.218-.075-.287.03c-.05.077-.376.547-.458.67c-.077.108-.035.168.045.234c.35.293.817.613 1.134.775a6.7 6.7 0 0 0 2.829.727a4.9 4.9 0 0 0 2.075-.354c1.095-.465 1.803-1.394 1.945-2.554M12 1.401c-2.068 0-3.754 1.95-3.833 4.39h7.665C15.751 3.35 14.066 1.4 12 1.4m7.851 22.598l-.08.001l-15.784-.002c-1.074-.04-1.863-.91-1.971-1.991l-.01-.195l-.707-15.526a.46.46 0 0 1 .45-.494h4.975C6.845 2.568 9.16 0 12 0s5.153 2.569 5.275 5.79h4.968a.46.46 0 0 1 .458.483l-.773 15.588l-.007.131c-.094 1.094-.979 1.977-2.07 2.006"
+      ></path>
+    </svg>
+  );
+}
+
+export function ArcticonsAliexpress(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 48 48"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.34 8.27A2.77 2.77 0 0 0 5.5 11.1v28.77a2.8 2.8 0 0 0 2.9 2.63h31.36a2.77 2.77 0 0 0 2.74-3V11a2.8 2.8 0 0 0-3.13-2.68Z"
+      ></path>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M39.72 8.27A2.77 2.77 0 0 0 37 5.5H11a2.77 2.77 0 0 0-2.73 2.77h0"
+      ></path>
+      <circle
+        cx="13.13"
+        cy="22.11"
+        r="1.94"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></circle>
+      <circle
+        cx="34.86"
+        cy="22.11"
+        r="1.94"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></circle>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M13.3 24a10.87 10.87 0 0 0 21.39 0"
+      ></path>
+    </svg>
   );
 }

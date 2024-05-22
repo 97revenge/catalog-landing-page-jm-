@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, AnimationProps } from "framer-motion";
 
-export function WordPullUp({ text }: { text: string }) {
+export function WordPullUp({ text, style }: { text: string; style: string }) {
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -17,18 +17,34 @@ export function WordPullUp({ text }: { text: string }) {
   };
 
   const words = text;
+
   return (
-    <motion.h1 variants={container} initial="hidden" animate="show">
-      {words.split(" ").map((word, i) => (
-        <motion.span
-          key={i}
-          variants={item}
-          style={{ display: "inline-block", paddingRight: "15px" }}
-          className="text-center"
-        >
-          {word === "" ? <span>&nbsp;</span> : word}
-        </motion.span>
-      ))}
-    </motion.h1>
+    <AnimatePresence>
+      <motion.h1 variants={container} initial="hidden" animate="show">
+        {words.split(" ").map((word, i) => {
+          const transition: AnimationProps = {
+            transition: {
+              yoyo: Infinity,
+              duration: 0.5,
+              delay: i * 0.2,
+            },
+          };
+
+          return (
+            <>
+              <motion.span
+                key={i}
+                variants={item}
+                style={{ display: "inline-block", paddingRight: "15px" }}
+                className={style}
+                {...(word.length === 30 && transition)}
+              >
+                {word === "" ? <span>&nbsp;</span> : word}
+              </motion.span>
+            </>
+          );
+        })}
+      </motion.h1>
+    </AnimatePresence>
   );
 }

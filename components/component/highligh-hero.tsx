@@ -29,7 +29,7 @@ export function HighlighHero() {
   if (isPending) {
     return (
       <>
-        <div className="w-full h-auto py-12 flex items-center justify-center">
+        <div className="w-full h-auto py-20 flex items-center justify-center">
           <NeutronLoader />
         </div>
       </>
@@ -103,14 +103,14 @@ export function HighlighHero() {
                                     {item.description}
                                   </p>
                                   <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-gray-900 dark:text-gray-50 font-semibold">
-                                      <CurrencyIcon className="h-12 w-12 current-fill text-yellow-500 shadow-xl text-xl rounded-full bg-gray-200" />
+                                    <div className="flex items-center  gap-2 text-gray-900 dark:text-gray-50 font-semibold">
+                                      <StarIcon className="h-12  p-2 animate-pulse w-16 current-fill text-yellow-500 shadow-xl text-xl rounded-full bg-gray-200" />
                                       <span className="px-2">
                                         <span className="text-red-500  ">
                                           {item.value[0]}
                                         </span>{" "}
                                         por{" "}
-                                        <span className="px-1 text-green-500 text-3xl">
+                                        <span className="px-1 text-green-500 text-5xl animate-bounce">
                                           {item.value[1]}
                                         </span>{" "}
                                       </span>

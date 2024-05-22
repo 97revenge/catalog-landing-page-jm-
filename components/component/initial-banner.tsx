@@ -1,3 +1,4 @@
+import { WavyText } from "../Animations/WavyText";
 import { WordPullUp } from "../Animations/WordPullUp";
 import { SocialGrid } from "./social-grid";
 import { TextAnimatedGradient } from "./text-gradient";
@@ -9,8 +10,11 @@ export function InitialBanner() {
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="mx-auto max-w-5xl relative top-4 text-center">
-              <h1 className="relative top-4 text-pop-up-top text-[#234fa3] animate-pulse text-3xl font-extrabold text-transparent sm:text-5xl lg:text-7xl">
-                <WordPullUp text="Ilumine e dê vida para sua casa com nossos produtos de casa & decoração 💡" />
+              <h1 className="relative top-4 text-pop-up-top text-blue-500 animate-pulse text-3xl font-extrabold text-transparent sm:text-5xl lg:text-7xl">
+                <WordPullUp
+                  style="text-center text-blue-500 text-3xl xm:text-4xl sm:text-5xl md:text-6xl xl:text-7xl "
+                  text="Ilumine e dê vida para sua casa com nossos produtos de casa & decoração 💡"
+                />
               </h1>
 
               <blockquote className="mx-auto mt-4 max-w-3xl font-bold sm:text-xl/relaxed">

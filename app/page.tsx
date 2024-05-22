@@ -1,4 +1,4 @@
-import { InitialHero as Hero } from "@/components/component/initial-hero";
+import { InitialHero as Introduction } from "@/components/component/initial-hero";
 import { InitialHeader as Header } from "@/components/component/initial-header";
 import { AcessHero as Acess } from "@/components/component/acess-hero";
 import { PaymentHero as Payment } from "@/components/component/payment-hero";
@@ -17,6 +17,8 @@ import { LocationHero } from "@/components/component/location-hero";
 import { ChatButton } from "@/components/Buttons/ChatButton";
 import { ChatLayout } from "@/components/Credenza/ChatLayout";
 import { HighlighHero } from "@/components/component/highligh-hero";
+import { ProductSection } from "@/components/Sections/ProductSection";
+
 export default async function Home() {
   return (
     <>
@@ -26,13 +28,9 @@ export default async function Home() {
             <ChatButton />
           </ChatLayout>
           <Header />
-          <Hero />
+          <Introduction />
           <HighlighHero />
-          <ProductCart url="/api/utilities" />
-          <LampShade />
-          <Cables />
-          <Acessories />
-          <Lamps />
+          <ProductSection />
           <Counpon />
           <TestimonialsCard />
           <LocationHero />
