@@ -7,7 +7,7 @@ import { JSX, SVGProps } from "react";
 import Image from "next/image";
 
 const code: QRCodeProps = {
-  value: "https://www.jmluzearte.com.br/",
+  value: "https://chat.whatsapp.com/J60gGno5lSAKw3StIK0ZeH",
   amplitude: 10,
 };
 
