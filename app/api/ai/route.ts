@@ -20,6 +20,7 @@ export const POST = async (req: NextRequest) => {
       ${Helpers.businessData.tellphone}
       ${Helpers.businessData.categorys}
       ${Helpers.businessData.openningHours}
+      ${Helpers.businessData.products}
       `,
       messages,
     });
