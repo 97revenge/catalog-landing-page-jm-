@@ -1,47 +1,12 @@
-import { JSX, SVGProps } from "react";
+import { JSX, SVGProps } from 'react'
 
-import { Button } from "@/components/ui/button";
-export function QuestionComponent() {
+import { Button } from '@/components/ui/button'
+export function QuestionComponent({ ...props }) {
   return (
     <section className="w-full ">
-      <div className="container  space-y-4 grid  px-4 md:px-6">
-        <div className="flex flex-col">
-          <div className="group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-            <Button
-              type="submit"
-              className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
-            >
-              <LineMdChat className="w-10 h-10 text-primary fill-current text-blue-500" />
-              <h3 className="text-2xl font-bold text-white">Quem somos ?</h3>
-            </Button>
-          </div>
-          <div className="group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-            <Button
-              type="submit"
-              className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
-            >
-              <LineMdLightbulb className="w-10 h-10 text-primary current fill text-blue-500" />
-              <h3 className="text-2xl font-bold text-white">
-                Com o que trabalhamos?{" "}
-              </h3>
-            </Button>
-          </div>
-          <div className="group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-            <Button
-              type="submit"
-              className=" bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
-            >
-              <LineMdCompassLoop className="w-10 h-10 text-primary" />
-              <h3 className="text-2xl font-bold text-white">Onde estamos ? </h3>
-            </Button>
-          </div>
-        </div>
-      </div>
+      <div className="container  space-y-4 grid  px-4 md:px-6" {...props}></div>
     </section>
-  );
+  )
 }
 
 function BoltIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
@@ -61,7 +26,7 @@ function BoltIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
       <circle cx="12" cy="12" r="4" />
     </svg>
-  );
+  )
 }
 
 export function LineMdLightbulb(props: SVGProps<SVGSVGElement>) {
@@ -100,7 +65,7 @@ export function LineMdLightbulb(props: SVGProps<SVGSVGElement>) {
         ></animate>
       </rect>
     </svg>
-  );
+  )
 }
 
 export function LineMdCompassLoop(props: SVGProps<SVGSVGElement>) {
@@ -164,7 +129,7 @@ export function LineMdCompassLoop(props: SVGProps<SVGSVGElement>) {
         mask="url(#lineMdCompassLoop0)"
       ></rect>
     </svg>
-  );
+  )
 }
 
 export function LineMdChat(props: SVGProps<SVGSVGElement>) {
@@ -232,5 +197,5 @@ export function LineMdChat(props: SVGProps<SVGSVGElement>) {
         </path>
       </g>
     </svg>
-  );
+  )
 }

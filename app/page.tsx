@@ -23,22 +23,20 @@ export default async function Home() {
   return (
     <>
       <Up>
-        <div className="bg-gray-100/20">
-          <ChatLayout>
-            <ChatButton />
-          </ChatLayout>
-          <Header />
-          <Introduction />
-          <HighlighHero />
-          <ProductSection />
-          <Counpon />
-          <TestimonialsCard />
-          <LocationHero />
-          <Social />
-          <Acess />
-          <Payment />
-          <InitialFooter />
-        </div>
+        <ChatLayout>
+          <ChatButton />
+        </ChatLayout>
+        <Header />
+        <Introduction />
+        <HighlighHero />
+        <ProductSection />
+        <Counpon />
+        <TestimonialsCard />
+        <LocationHero />
+        <Social />
+        <Acess />
+        <Payment />
+        <InitialFooter />
       </Up>
     </>
   );

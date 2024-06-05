@@ -1,6 +1,6 @@
-import { Tailwind } from "@react-email/components";
+import { Tailwind } from '@react-email/components'
 
-import { Player } from "video-react";
+import { Player } from 'video-react'
 
 export const OffersComponent = () => {
   return (
@@ -9,21 +9,21 @@ export const OffersComponent = () => {
         <section className="max-w-2xl px-6 py-8 mx-auto bg-white ">
           <main className="mt-8">
             <a href="https://catalogojmluzearte.vercel.app/">
-              <video width="750" height="500" controls>
+              <video poster="path of the poster image" width="480" height="270">
                 <source
-                  src="https://github.com/97revenge/thunder-organics/assets/80254945/6fc1fb0f-fc9f-4460-ae16-ada2624c6914"
+                  src="https://github.com/97revenge/thunder-organics/assets/80254945/bed1b27d-39f0-49c1-bb44-b7f01d2310b5"
                   type="video/mp4"
                 />
               </video>
             </a>
 
             <p className="mt-2 text-gray-500 text-center">
-              Use o código de cupom{" "}
+              Use o código de cupom{' '}
               <b className="text-2xl text-red-500">PRIMEIRA100</b> e ao
-              finalizar sua compra e economize até 35% em todos os produtos de{" "}
+              finalizar sua compra e economize até 35% em todos os produtos de{' '}
               <b className="text-2xl underline">
                 Iluminação, Abajures & Útilidades
-              </b>{" "}
+              </b>{' '}
               em nosso site de e-commerce
             </p>
 
@@ -146,5 +146,5 @@ export const OffersComponent = () => {
         </section>
       </Tailwind>
     </>
-  );
-};
+  )
+}
