@@ -1,18 +1,17 @@
 'use client'
-
 import Markdown from 'react-markdown'
+
+export const dynamic = 'force-dynamic'
+export const maxDuration = 30
+
+// import Markdown from 'react-markdown'
 
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 
 import {
   Credenza,
   CredenzaBody,
-  CredenzaClose,
   CredenzaContent,
-  CredenzaDescription,
-  CredenzaFooter,
-  CredenzaHeader,
-  CredenzaTitle,
   CredenzaTrigger,
 } from '@/components/ui/credenza'
 import { ComversacionalComponent } from '../component/comversacional-component'
@@ -20,28 +19,56 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { ScrollArea } from '../ui/scroll-area'
 
-import { UseChatOptions } from 'ai'
+import { CoreMessage } from 'ai'
 
-import { useChat } from 'ai/react'
-import { FormEvent, useEffect, useRef, useState } from 'react'
 import {
-  LineMdChat,
-  LineMdCompassLoop,
+  ChangeEvent,
+  FormEvent,
+  HtmlHTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+  useTransition,
+} from 'react'
+import {
   LineMdLightbulb,
   QuestionComponent,
 } from '../component/question-component'
 import { Helpers } from '@/lib/helpers'
+import { chat, Message } from '@/actions/chat'
+import { readStreamableValue } from 'ai/rsc'
 
 export const ChatLayout = ({ ...props }) => {
-  const { messages, input, handleInputChange, handleSubmit, setInput } =
-    useChat({
-      api: 'api/ai',
-    })
+  const [conversation, setConversation] = useState<Message[]>([])
+  const [input, setInput] = useState<string>('')
+  const [isPending, startTransition] = useTransition()
 
-  const handler = (e: FormEvent<HTMLFormElement>) => {
-    setView(true)
-    handleSubmit(e)
-    return e.preventDefault()
+  // const { messages, input, handleInputChange, handleSubmit, setInput } =
+  //   useChat({
+  //     api: 'api/ai',
+  //   })
+
+  const handler = async () => {
+    const { messages, newMessage } = await chat([
+      ...conversation,
+      { role: 'user', content: input },
+    ])
+
+    startTransition(async () => {
+      setInput('')
+      let textContext = ''
+
+      for await (const delta of readStreamableValue(newMessage)) {
+        textContext = `${textContext}${delta}`
+        setConversation([
+          ...messages,
+          {
+            role: 'assistant',
+            content: delta as string,
+          },
+        ])
+      }
+    })
   }
 
   const chatRef = useRef<null | HTMLDivElement>(null)
@@ -52,7 +79,7 @@ export const ChatLayout = ({ ...props }) => {
 
   useEffect(() => {
     scrollToBottom()
-  }, [messages])
+  }, [conversation])
 
   const [view, setView] = useState<boolean>(false)
 
@@ -67,13 +94,19 @@ export const ChatLayout = ({ ...props }) => {
           <CredenzaBody>
             <ComversacionalComponent>
               <div className="transition-all flex-1 overflow-auto p-4">
-                {view === true ? (
-                  <>
-                    <ScrollArea className="transition-all space-y-4 h-[350px] p-2 rounded-xl bg-gray-200 bg-opacity-60">
-                      {messages.map(m => (
+                <ScrollArea
+                  className={
+                    conversation[0]?.content
+                      ? 'transition-all space-y-4 min-h-0 h-[350px] p-2 rounded-xl bg-gray-200 bg-opacity-60'
+                      : 'transition-all space-y-4 min-h-0 h-[10px] p-2 rounded-xl bg-gray-200 bg-opacity-60'
+                  }
+                >
+                  {conversation[0]?.content ? (
+                    <>
+                      {conversation.map((m, index) => (
                         <>
                           <div
-                            key={m.id}
+                            key={index}
                             className="transition-all   whitespace-pre-wrap"
                           >
                             {m.role === 'user' ? (
@@ -117,7 +150,7 @@ export const ChatLayout = ({ ...props }) => {
                                     ]) ? (
                                       'Com o que Trabalhamos ? '
                                     ) : (
-                                      <Markdown>{m.content}</Markdown>
+                                      <Markdown>{m.content as string}</Markdown>
                                     )}
                                   </div>
                                   <div className="transition-all font-medium text-gray-500 dark:text-gray-400">
@@ -129,7 +162,7 @@ export const ChatLayout = ({ ...props }) => {
                               <>
                                 <div className="transition-all  flex flex-col gap-1 w-auto">
                                   <div className="transition-all rounded-lg bg-blue-500 px-4 py-2 text-sm text-white">
-                                    <Markdown>{m.content}</Markdown>
+                                    <Markdown>{m.content as string}</Markdown>
                                   </div>
                                   <div className="transition-all font-medium text-gray-500 dark:text-gray-400">
                                     IA
@@ -140,78 +173,28 @@ export const ChatLayout = ({ ...props }) => {
                           </div>
                         </>
                       ))}
-                      <div ref={chatRef} />
-                    </ScrollArea>
-                  </>
-                ) : (
-                  <>
-                    <QuestionComponent>
-                      <div className="transition-all flex flex-col">
-                        <div className="transition-all group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                          <div className="transition-all absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-                          <form onSubmit={handler as any}>
-                            <Input className="hidden" />
-                            <Button
-                              className="transition-all  bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
-                              onClick={() => setInput('Quem somos? ')}
-                              type="submit"
-                            >
-                              <LineMdLightbulb className="transition-all w-10 h-10 text-primary current fill text-blue-500" />
-                              <h3 className="transition-all text-2xl font-bold text-white">
-                                Quem somos?{' '}
-                              </h3>
-                            </Button>
-                          </form>
-                        </div>
-                        <div className="transition-all group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                          <div className="transition-all absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-                          <form onSubmit={handler as any}>
-                            <Input className="hidden" />
-                            <Button
-                              className="transition-all  bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
-                              onClick={() =>
-                                setInput(
-                                  'Com o que a JM Luz e arte trabalha ? ',
-                                )
-                              }
-                              type="submit"
-                            >
-                              <LineMdLightbulb className="transition-all w-10 h-10 text-primary current fill text-blue-500" />
-                              <h3 className="transition-all text-2xl font-bold text-white">
-                                Com o que trabalhamos?{' '}
-                              </h3>
-                            </Button>
-                          </form>
-                        </div>
-                        <div className="transition-all group relative rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                          <div className="transition-all absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent group-hover:from-blue-900/80 rounded-lg" />
-                          <form onSubmit={handler as any}>
-                            <Input className="hidden" />
-                            <Button
-                              className="transition-all  bg-transparent hover:bg-transparent w-full relative p-6 flex flex-col items-start gap-4 h-full"
-                              onClick={() => setInput('Endereço JM Luz e arte')}
-                              type="submit"
-                            >
-                              <LineMdLightbulb className="transition-all w-10 h-10 text-primary current fill text-blue-500" />
-                              <h3 className="transition-all text-2xl font-bold text-white">
-                                Onde estamos?{' '}
-                              </h3>
-                            </Button>
-                          </form>
-                        </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-center w-full h-full  bg-red-200 ">
+                        jm luz e arte
                       </div>
-                    </QuestionComponent>
-                  </>
-                )}
+                    </>
+                  )}
+
+                  <div ref={chatRef} />
+                </ScrollArea>
               </div>
               <form
-                method="post"
-                onSubmit={handleSubmit}
+                action={handler}
                 className="transition-all flex items-center gap-2 border-t px-4 py-3"
               >
                 <Input
                   value={input}
-                  onChange={handleInputChange}
+                  disabled={isPending}
+                  onChange={event => {
+                    setInput(event.target.value)
+                  }}
                   className="transition-all flex-1"
                   placeholder="Algo que queira saber sobre a empresa..."
                   type="text"
@@ -219,7 +202,7 @@ export const ChatLayout = ({ ...props }) => {
                 <Button
                   className="transition-all bg-blue-500"
                   type="submit"
-                  onClick={() => setView(true)}
+                  disabled={isPending}
                 >
                   Enviar
                 </Button>
