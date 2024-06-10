@@ -96,9 +96,7 @@ export const ChatLayout = ({ ...props }) => {
               <div className="transition-all flex-1 overflow-auto p-4">
                 <ScrollArea
                   className={
-                    conversation[0]?.content
-                      ? 'transition-all space-y-4 min-h-0 h-[350px] p-2 rounded-xl bg-gray-200 bg-opacity-60'
-                      : 'transition-all space-y-4 min-h-0 h-[10px] p-2 rounded-xl bg-gray-200 bg-opacity-60'
+                    'transition-all space-y-4 min-h-0 h-[350px] p-2 rounded-xl bg-gray-200 bg-opacity-60'
                   }
                 >
                   {conversation[0]?.content ? (
