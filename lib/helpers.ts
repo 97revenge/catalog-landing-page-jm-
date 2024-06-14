@@ -17,6 +17,9 @@ Tomadas Elétricas
 rabichos`,
     Description: `A JM Luz e arte transforma e desenvolve ideias em realidade, customizando cabos e luminárias em peças decorativas. O que proporciona uma experiência positiva aos nosso clientes`,
     content: `### Sobre a JM Luz e Arte
+    Explore o site/redes sociais : @jmluzearte
+    
+    instagram:@jmluzearte
 
 A **JM Luz e Arte** é uma empresa especializada na transformação e desenvolvimento de ideias em realidade, oferecendo a personalização de cabos e luminárias em peças decorativas exclusivas. Com um foco em proporcionar uma experiência positiva aos seus clientes, a JM Luz e Arte destaca-se pela qualidade e criatividade de seus produtos.
 
