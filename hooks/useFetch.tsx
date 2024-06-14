@@ -1,27 +1,31 @@
-"use client";
+'use client'
 
-import next from "next";
-import { useTransition, useEffect, useState } from "react";
+import next from 'next'
+import { useTransition, useEffect, useState, useCallback } from 'react'
 
 export const useFetch = ({ url }: { url: string }) => {
-  const [state, setState] = useState<Array<any>>([]);
+  const [state, setState] = useState<Array<any>>([])
 
-  const [isPending, startTransition] = useTransition();
-
-  useEffect(() => {
+  const callback = useCallback(async () => {
     startTransition(async () => {
       const response = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         next: { revalidate: 3600 },
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-      });
-      const data = await response.json();
+      })
+      const data = await response.json()
 
-      setState(data);
-    });
-  }, []);
+      setState(data)
+    })
+  }, [url])
 
-  return { state, isPending };
-};
+  const [isPending, startTransition] = useTransition()
+
+  useEffect(() => {
+    callback()
+  }, [callback])
+
+  return { state, isPending }
+}

@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 30
 
 // import Markdown from 'react-markdown'
+import { useChat, useAssistant } from 'ai/react'
 
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 
@@ -18,8 +19,6 @@ import { ComversacionalComponent } from '../component/comversacional-component'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { ScrollArea } from '../ui/scroll-area'
-
-import { CoreMessage } from 'ai'
 
 import {
   ChangeEvent,
@@ -35,18 +34,37 @@ import {
   QuestionComponent,
 } from '../component/question-component'
 import { Helpers } from '@/lib/helpers'
-import { chat, Message } from '@/actions/chat'
-import { readStreamableValue } from 'ai/rsc'
+import { Message } from '@/actions/chat'
+import { readStreamableValue, useActions, getAIState } from 'ai/rsc'
 
 export const ChatLayout = ({ ...props }) => {
-  const [conversation, setConversation] = useState<Message[]>([])
-  const [input, setInput] = useState<string>('')
+  const [conversation, setConversation] = useState<Message[]>([
+    {
+      role: 'system',
+      content: `${Helpers.businessData.tellphone}${Helpers.businessData.address}
+      ${Helpers.businessData.Description}
+      ${Helpers.businessData.categorys}
+      ${Helpers.businessData.products}
+      ${Helpers.businessData.content}
+      ${Helpers.businessData.openningHours}`,
+    },
+  ])
+  // const [input, setInput] = useState<string>('')
   const [isPending, startTransition] = useTransition()
 
-  // const { messages, input, handleInputChange, handleSubmit, setInput } =
-  //   useChat({
-  //     api: 'api/ai',
-  //   })
+  const { chat } = useActions()
+
+  const { input, setInput } = useChat({
+    onFinish: async message => {
+      alert(message)
+    },
+    onError: async error => {
+      alert(error)
+    },
+    onResponse: async response => {
+      alert(response)
+    },
+  })
 
   const handler = async () => {
     const { messages, newMessage } = await chat([
@@ -101,76 +119,90 @@ export const ChatLayout = ({ ...props }) => {
                 >
                   {conversation[0]?.content ? (
                     <>
-                      {conversation.map((m, index) => (
-                        <>
-                          <div
-                            key={index}
-                            className="transition-all   whitespace-pre-wrap"
-                          >
-                            {m.role === 'user' ? (
-                              <>
-                                <div className="transition-all ">
-                                  <Avatar className="transition-all h-8 w-8">
-                                    <AvatarImage
-                                      alt="John Doe"
-                                      src="https://api.iconify.design/line-md:iconify1.svg"
-                                    />
-                                    <AvatarFallback>😀</AvatarFallback>
-                                  </Avatar>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div className="transition-all relative left-[90%] bottom-1">
-                                  <Avatar className="transition-all h-8 w-8">
-                                    <AvatarImage
-                                      alt="You"
-                                      src="https://api.iconify.design/bi:stars.svg"
-                                    />
-                                    <AvatarFallback>🤖</AvatarFallback>
-                                  </Avatar>
-                                </div>
-                              </>
-                            )}
+                      {conversation
+                        .filter(
+                          m => m.role === 'user' || m.role === 'assistant',
+                        )
+                        .map((m, index) => (
+                          <>
+                            <div
+                              key={index}
+                              className="transition-all   whitespace-pre-wrap"
+                            >
+                              {m.role === 'user' ? (
+                                <>
+                                  <div className="transition-all ">
+                                    <Avatar className="transition-all h-8 w-8">
+                                      <AvatarImage
+                                        alt="John Doe"
+                                        src="https://api.iconify.design/line-md:iconify1.svg"
+                                      />
+                                      <AvatarFallback>😀</AvatarFallback>
+                                    </Avatar>
+                                  </div>
+                                </>
+                              ) : (
+                                <>
+                                  <div className="transition-all relative left-[90%] bottom-1">
+                                    <Avatar className="transition-all h-8 w-8">
+                                      <AvatarImage
+                                        alt="You"
+                                        src="https://api.iconify.design/bi:stars.svg"
+                                      />
+                                      <AvatarFallback>🤖</AvatarFallback>
+                                    </Avatar>
+                                  </div>
+                                </>
+                              )}
 
-                            {m.role === 'user' ? (
-                              <>
-                                <div className="transition-all relative bottom-2 right-1 flex flex-col gap-1 w-full flex items-start  justify-start ml-8">
-                                  <div className="transition-all rounded-lg bg-blue-300   px-4 py-2 text-sm dark:bg-gray-800 w-auto max-w-sm ">
-                                    {m.content ==
-                                    Helpers.initialQuestion([
-                                      Helpers.businessData.content,
-                                      Helpers.businessData.address,
-                                      Helpers.businessData.tellphone,
-                                      Helpers.businessData.openningHours,
-                                      Helpers.businessData.categorys,
-                                      Helpers.businessData.Description,
-                                    ]) ? (
-                                      'Com o que Trabalhamos ? '
-                                    ) : (
-                                      <Markdown>{m.content as string}</Markdown>
-                                    )}
+                              {m.role === 'user' ? (
+                                <>
+                                  <div className="transition-all relative bottom-2 right-1 flex flex-col gap-1 w-full flex items-start  justify-start ml-8">
+                                    <div className="transition-all rounded-lg bg-blue-300   px-4 py-2 text-sm dark:bg-gray-800 w-auto max-w-sm ">
+                                      {m.content ==
+                                      Helpers.initialQuestion([
+                                        Helpers.businessData.content,
+                                        Helpers.businessData.address,
+                                        Helpers.businessData.tellphone,
+                                        Helpers.businessData.openningHours,
+                                        Helpers.businessData.categorys,
+                                        Helpers.businessData.Description,
+                                      ])
+                                        ? 'Com o que Trabalhamos ? '
+                                        : m.role === 'user' && (
+                                            <>
+                                              <Markdown>
+                                                {m.content as string}
+                                              </Markdown>
+                                            </>
+                                          )}
+                                    </div>
+                                    <div className="transition-all font-medium text-gray-500 dark:text-gray-400">
+                                      Você
+                                    </div>
                                   </div>
-                                  <div className="transition-all font-medium text-gray-500 dark:text-gray-400">
-                                    Você
+                                </>
+                              ) : (
+                                <>
+                                  <div className="transition-all  flex flex-col gap-1 w-auto">
+                                    <div className="transition-all rounded-lg bg-blue-500 px-4 py-2 text-sm text-white">
+                                      {m.role === 'assistant' && (
+                                        <>
+                                          <Markdown>
+                                            {m.content as string}
+                                          </Markdown>
+                                        </>
+                                      )}
+                                    </div>
+                                    <div className="transition-all font-medium text-gray-500 dark:text-gray-400">
+                                      IA
+                                    </div>
                                   </div>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div className="transition-all  flex flex-col gap-1 w-auto">
-                                  <div className="transition-all rounded-lg bg-blue-500 px-4 py-2 text-sm text-white">
-                                    <Markdown>{m.content as string}</Markdown>
-                                  </div>
-                                  <div className="transition-all font-medium text-gray-500 dark:text-gray-400">
-                                    IA
-                                  </div>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </>
-                      ))}
+                                </>
+                              )}
+                            </div>
+                          </>
+                        ))}
                     </>
                   ) : (
                     <>
