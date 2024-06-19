@@ -49,7 +49,7 @@ export function HighlighHero() {
               ]}
               className=" w-[100%]"
             >
-              <CarouselContent>
+              <CarouselContent className="flex flex-row gap-x-6">
                 {state.map(
                   (item: z.infer<typeof hightLightSchema>, index: any) => {
                     return (
@@ -58,9 +58,9 @@ export function HighlighHero() {
                           key={index}
                           className=" flex flex-col sm:flex-col  lg:flex-row items-center  justify-center p-4  w-full"
                         >
-                          <div className="p-12 flex items-center justify-center ">
+                          <div className="p-12  flex items-center justify-center ">
                             <HighlightsCard>
-                              <Card className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+                              <Card className="p-12 relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
                                 <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
                                   <Badge
                                     className="bg-yellow-500 text-white px-2 py-1 rounded-full"
@@ -102,7 +102,7 @@ export function HighlighHero() {
                                   <p className=" text-start  font-bold text-gray-500 dark:text-gray-400 mb-6">
                                     {item.description}
                                   </p>
-                                  <div className="flex items-center justify-between">
+                                  <div className="flex items-center sm:flex-col md:flex-col lg:flex-row space-y-6 justify-between">
                                     <div className="flex items-center  gap-2 text-gray-900 dark:text-gray-50 font-semibold">
                                       <StarIcon className="h-12  p-2 animate-pulse w-16 current-fill text-yellow-500 shadow-xl text-xl rounded-full bg-gray-200" />
                                       <span className="px-2">
@@ -120,7 +120,33 @@ export function HighlighHero() {
                                         className="w-full max-w-[150px] bg-green-500"
                                         size="lg"
                                       >
-                                        Comprar Agora
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="32"
+                                          height="32"
+                                          viewBox="0 0 48 48"
+                                        >
+                                          <g
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="4"
+                                          >
+                                            <path
+                                              stroke-linejoin="round"
+                                              d="M6 15h36l-2 27H8z"
+                                              clip-rule="evenodd"
+                                            />
+                                            <path
+                                              stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              d="M16 19V6h16v13"
+                                            />
+                                            <path
+                                              stroke-linecap="round"
+                                              d="M16 34h16"
+                                            />
+                                          </g>
+                                        </svg>
                                       </Button>
                                     </Link>
                                   </div>
@@ -139,24 +165,26 @@ export function HighlighHero() {
                                 {item.insights?.description}
                               </p>
                             </div>
-                            <div className="grid grid-cols-2 gap-6">
-                              {item.insights?.content.map((item) => {
-                                return (
-                                  <>
-                                    <div className="transition-all blur-none hover:blur-none flex items-start space-x-3">
-                                      <ViewIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-                                      <div>
-                                        <h4 className="text-lg font-medium">
-                                          {item?.title}
-                                        </h4>
-                                        <p className="text-gray-500 dark:text-gray-400">
-                                          {item?.descripton}
-                                        </p>
+                            <div className="">
+                              <div className="grid grid-cols-2 gap-6">
+                                {item.insights?.content.map((item) => {
+                                  return (
+                                    <>
+                                      <div className="transition-all blur-none hover:blur-none flex items-start space-x-3">
+                                        <ViewIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                                        <div>
+                                          <h4 className="text-md md:text-lg font-sm">
+                                            {item?.title}
+                                          </h4>
+                                          <p className="text-xs md:text-lg text-gray-500 dark:text-gray-400">
+                                            {item?.descripton}
+                                          </p>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </>
-                                );
-                              })}
+                                    </>
+                                  );
+                                })}
+                              </div>
                             </div>
                           </div>
                         </CarouselItem>

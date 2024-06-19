@@ -73,21 +73,6 @@ export function UtilitiesHero({ url }: { url: string }) {
     <>
       <div>
         <>
-          {/* <summary>
-            <Category>
-              <FadeDownStagger>
-                <TextAnimatedGradient>Útilidades </TextAnimatedGradient>
-              </FadeDownStagger>
-
-              <FadeDownStagger>
-                <p className="font-bold text-gray-800 dark:text-gray-400 text-center ">
-                  Facilite sua vida com nossa linha de produtos de utilidade
-                  excepcionais, criados para tornar seu dia a dia mais eficiente
-                  e agradável.
-                </p>
-              </FadeDownStagger>
-            </Category>
-          </summary> */}
           <div className="transition-auto container py-6  gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 sm:grid-cols-2 space-y-4 lg:space-y-0 md:space-y-0 xl:space-y-0 sm:space-y-0  animated-background bg-gradient-to-r from-green-300/10 via-blue-500/10 to-purple-600/10 ">
             {isPending ? (
               <>
@@ -215,8 +200,8 @@ export function UtilitiesHero({ url }: { url: string }) {
                                     </p>
 
                                     <div className="  w-full  flex items-center justify-center content-center">
-                                      <div className="w-full h-12 p-4 gap-x-2 flex flex-row    ">
-                                        <Button className="h-12 relative bottom-4 w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
+                                      <div className="w-auto relative left-4 bg-red-200   gap-x-2 flex flex-row items-center justify-center       ">
+                                        <Button className="h-12  w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
                                           <Link
                                             href={item.url}
                                             target="_blank"
@@ -225,7 +210,7 @@ export function UtilitiesHero({ url }: { url: string }) {
                                             <SubwayBag className="text-2xl" />
                                           </Link>
                                         </Button>
-                                        <Button className="h-12 relative bottom-4 w-full my-2 rounded bg-[#f6422e]  text-sm font-medium transition hover:scale-105 hover:bg-[#f6422e]">
+                                        <Button className="h-12  w-full my-2 rounded bg-[#f6422e]  text-sm font-medium transition hover:scale-105 hover:bg-[#f6422e]">
                                           <Link
                                             href={
                                               "https://shopee.com.br/jm_luzearte?shopCollection=152524164#product_list"
@@ -236,7 +221,7 @@ export function UtilitiesHero({ url }: { url: string }) {
                                             <SimpleIconsShopee className="text-2xl" />
                                           </Link>
                                         </Button>
-                                        <Button className="h-12 relative bottom-4 w-full my-2 rounded bg-[#e2350b]  text-sm font-medium transition hover:scale-105 hover:bg-[#e2350b]">
+                                        <Button className="h-12  w-full my-2 rounded bg-[#e2350b]  text-sm font-medium transition hover:scale-105 hover:bg-[#e2350b]">
                                           <Link
                                             href={
                                               "https://www.aliexpress.com/store/1103015110"
