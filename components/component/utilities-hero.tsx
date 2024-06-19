@@ -200,7 +200,7 @@ export function UtilitiesHero({ url }: { url: string }) {
                                     </p>
 
                                     <div className="  w-full  flex items-center justify-center content-center">
-                                      <div className="w-auto relative left-4 bg-red-200   gap-x-2 flex flex-row items-center justify-center       ">
+                                      <div className="w-auto relative left-4    gap-x-4 flex flex-row items-center justify-center       ">
                                         <Button className="h-12  w-full my-2 rounded bg-blue-800  text-sm font-medium transition hover:scale-105 hover:bg-green-500">
                                           <Link
                                             href={item.url}

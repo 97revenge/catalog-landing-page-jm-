@@ -157,7 +157,7 @@ export function HighlighHero() {
                           <div className=" mx-12 bg-gray-100  my-auto p-4 rounded-xl shadow-xl space-y-6">
                             <div className="space-y-2">
                               <TextAnimatedGradient>
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                                <h2 className="text-3xl font-extrabold tracking-tighter sm:text-4xl md:text-5xl">
                                   {item.insights?.title}
                                 </h2>
                               </TextAnimatedGradient>
